@@ -1,4 +1,4 @@
-package W28;
+package V38;
 /*
 
 Skriv ett program som
@@ -13,9 +13,10 @@ Expected Output
 Equivalent decimal number is: 37
 b. Gör en metod som gör det omvända.
 
-c. Försök kombinera 2 och 3 så vi kan hantera en användares input både om det är hexadecimalt eller decimalt tal.
+c. Försök kombinera 2 och 3 så vi kan hantera en användares input både om det är decimal  eller decimalt tal.
 
-Refrecne link [https://sv.wikipedia.org/wiki/Hexadecimala_talsystemet]
+Refrecne link1 [https://sv.wikipedia.org/wiki/Hexadecimala_talsystemet]
+         link2[http://cmc.education/courses/programmering7till9/teori/datorkunskap.php]
 */
 
 

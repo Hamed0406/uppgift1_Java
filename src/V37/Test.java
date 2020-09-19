@@ -1,4 +1,4 @@
-package W37;
+package V37;
 
 import java.util.Random;
 import java.util.*;

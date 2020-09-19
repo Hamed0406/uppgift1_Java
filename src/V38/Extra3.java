@@ -1,4 +1,4 @@
-package W28;
+package V38;
 /*
 * Skriv ett program som tar in en Int och som sedan skriver ut summan av siffrorna:
 
