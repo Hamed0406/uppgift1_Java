@@ -20,6 +20,7 @@ public class Uppgift_ett {
         final String TEXT_RESET = "\u001B[0m";
         final String TEXT_BLUE = "\u001B[34m";
         final String TEXT_BOLD ="\u001B[1m";
+        final String TEXT_RED="\u001B[31m";
 
        // Scanner sc=new Scanner(System.in, "Cp850");
         int stringLenth;
@@ -42,7 +43,7 @@ public class Uppgift_ett {
            }
            System.out.println( "the sentence you had been entered has "  +TEXT_YELLOW +vokalar+ TEXT_RESET+TEXT_BOLD+" Vowels." );
            System.out.println( "the sentence you had been entered has "+TEXT_BLUE+konsonanter +TEXT_RESET+TEXT_BOLD+" Consonants." );
-           System.out.println( "the sentence you had been entered has "+TEXT_BLUE+digit +TEXT_RESET+TEXT_BOLD+" Digits." );
+           System.out.println( "the sentence you had been entered has "+TEXT_RED+digit +TEXT_RESET+TEXT_BOLD+" Digits." );
            System.out.println("Do you want to enter a new sentence?Y/N.");
            Scanner scanner=new Scanner(System.in);
            String answer=scanner.next();
