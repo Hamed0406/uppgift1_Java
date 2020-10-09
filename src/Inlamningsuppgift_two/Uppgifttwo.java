@@ -45,9 +45,9 @@ public class Uppgifttwo {
             if (winNumberString.equals(userInputString)) {
                 prize = 10000;
                 System.out.println(" Matched lott .You wined " + prize + " SEK");
-                System.out.println(" You have " + bank + " SEK do you want to continueY/N?");
-
                 bank = bank + prize;
+
+                System.out.println(" You have " + bank + " SEK do you want to continueY/N?");
             } else if ((winNumberString.charAt(0) == userInputString.charAt(1)) && (winNumberString.charAt(1) == userInputString.charAt(0))) {
                 prize = 5000;
                 System.out.println(" Mirror lott .You wined " + prize + " SEK");
@@ -66,6 +66,8 @@ public class Uppgifttwo {
 
             } else if ((userInputString.charAt(0) != winNumberString.charAt(0)) && (userInputString.charAt(0) != winNumberString.charAt(1)) && (userInputString.charAt(1) != winNumberString.charAt(0)) && (userInputString.charAt(1) != winNumberString.charAt(1))) {
                 System.out.println("you lost");
+                prize=0;
+
                 bank = bank + prize;
 
                 System.out.println(" You have " + bank + " SEK in your bank do you want to continueY/N?");
