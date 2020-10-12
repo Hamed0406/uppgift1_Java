@@ -17,11 +17,10 @@ public class Uppgifttwo {
         final String TEXT_BOLD = "\u001B[1m";
         final String TEXT_RED = "\u001B[31m";
         final  String TEXT_PICK="\u001B[36m";
-        int max = 99;
-        int min = 1;
+
         int winNumber, userInput;
         int prize = 0, bank = 0;
-        boolean flag = true,flagBonus=true;
+        boolean flag = true,flagBonus=false;
         String winNumberString, userInputString;
 
 
@@ -32,9 +31,12 @@ public class Uppgifttwo {
 
         System.out.print("\nIf you you are ready to play enter your two digits without any space: ");
         do {
-            Random r = new Random();
-            winNumber = r.nextInt((max - min) + 1) + min;
-            //System.out.println(winNumber);
+            winNumber=lottNumber();
+            if(flagBonus==true)
+            while(!checkPairDigits(winNumber))
+                winNumber=lottNumber();
+
+            System.out.println(winNumber);
 
             Scanner sc = new Scanner(System.in);
             userInput = sc.nextInt();
@@ -122,6 +124,22 @@ System.out.println("Please enter your new number: ");
         }
         return flagBonus;
     }
-
-
+private static int lottNumber()
+{
+    Random r = new Random();
+    int max = 99;
+    int min = 1;
+    int lott = r.nextInt((max - min) + 1) + min;
+    return lott;
+}
+private  static boolean checkPairDigits(int winNumner)
+{
+    String number=Integer.toString(winNumner);
+    boolean flagPair;
+    if(number.charAt(0)==number.charAt(1))
+flagPair=true;
+    else
+        flagPair=false;
+    return flagPair;
+}
 }
