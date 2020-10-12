@@ -16,7 +16,7 @@ public class Uppgifttwo {
         final String TEXT_BLUE = "\u001B[34m";
         final String TEXT_BOLD = "\u001B[1m";
         final String TEXT_RED = "\u001B[31m";
-        final  String TEXT_PICK="\u001B[35m";
+        final  String TEXT_PICK="\u001B[36m";
         int max = 99;
         int min = 1;
         int winNumber, userInput;
@@ -26,6 +26,10 @@ public class Uppgifttwo {
 
 
         System.out.print(TEXT_PICK+TEXT_BOLD+"Hi welcome to lottery program.This is first time you are using the system you get one free ticket \nyou pick a number between 01-99.\nIf you guess right digits in right order ;you win 1000SEK .\nIf you guess right digits ,but not in right order ;you win 5000 SEK.\nIf you guess one right digits ; you win 1000 SEK . ");
+        System.out.print("You can choose between bonus mode and normal mood,in bonus mood you cant pick any pair digits. ");
+        System.out.print("Bonus mood ?Y/N ");
+       bonosCheck(flagBonus);
+
         System.out.print("\nIf you you are ready to play enter your two digits without any space: ");
         do {
             Random r = new Random();
@@ -103,6 +107,20 @@ System.out.println("Please enter your new number: ");
 
         }
         return flag;
+    }
+    private static boolean bonosCheck(boolean flagBonus )
+    {
+        Scanner bonous = new Scanner(System.in);
+        String bounosAltrenative = bonous.next();
+        bounosAltrenative.toLowerCase();
+        if (bounosAltrenative.equals("y")) {
+            flagBonus = true;
+        }
+        else if (bounosAltrenative.equals("n")) {
+            flagBonus = false;
+
+        }
+        return flagBonus;
     }
 
 

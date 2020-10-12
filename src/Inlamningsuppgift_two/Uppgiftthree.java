@@ -4,20 +4,15 @@ import java.util.Scanner;
 
 public class Uppgiftthree {
 
-    final String TEXT_YELLOW = "\u001B[33m";
-    final String TEXT_RESET = "\u001B[0m";
-    final String TEXT_BLUE = "\u001B[34m";
-    final String TEXT_BOLD = "\u001B[1m";
-    final String TEXT_RED = "\u001B[31m";
-    final  String TEXT_PICK="\u001B[35m";
+
     public static void main(String[] args) {
-        int x = 8;
+        int rows = 8;
         int rowCount = 1;
 
         System.out.println("Here Is Your Pyramid");
         //Implementing the logic
 
-        for (int i = x; i > 0; i--) {
+        for (int i = rows; i > 0; i--) {
             //Printing i*2 spaces at the beginning of each row
             for (int j = 1; j <= i * 2; j++) {
                 System.out.print("   ");
@@ -28,16 +23,14 @@ public class Uppgiftthree {
             for (int j = 0; j <= rowCount - 1; j++) {
                 int number = (int) Math.pow(3, j);
                 int length = (int) (Math.log10(number) + 1);
-
                 if (length == 1)
-                    System.out.print("     "+number);
+                    System.out.print("     "+"\u001B[31m"+number+"\u001B[0m");
                 if (length == 2)
-                    System.out.print("    " + number);
+                    System.out.print("    " +  "\u001B[33m"+number+"\u001B[0m");
                 if (length == 3)
-                    System.out.print("   " + number);
+                    System.out.print("   " + "\u001B[36m"+ number+"\u001B[0m");
                 if (length == 4)
-                    System.out.print("  " + number);
-                //  System.out.printf("%3d", (int)Math.pow(3, j));
+                    System.out.print("  " +"\u001B[36m"+number+"\u001B[0m");
             }
 
             //Printing j value where j value will be from rowCount-1 to 1
@@ -47,14 +40,13 @@ public class Uppgiftthree {
                 int length = (int) (Math.log10(number) + 1);
 
                 if (length == 1)
-                    System.out.print("     " + number);
+                    System.out.print("     " + "\u001B[31m"+number+"\u001B[0m");
                 if (length == 2)
-                    System.out.print("    " + number);
+                    System.out.print("    " + "\u001B[33m"+number+"\u001B[0m");
                 if (length == 3)
-                    System.out.print("   " + number);
+                    System.out.print("   " +"\u001B[36m"+ number+"\u001B[0m");
                 if (length == 4)
                     System.out.print("  " + number);
-                //  System.out.printf("%3d", (int)Math.pow(3, j-1));
             }
 
             System.out.println();
