@@ -1,9 +1,15 @@
 package Inlamningsuppgift_two;
 import java.util.Scanner;
 
+
 public class Uppgiftthree {
 
-
+    final String TEXT_YELLOW = "\u001B[33m";
+    final String TEXT_RESET = "\u001B[0m";
+    final String TEXT_BLUE = "\u001B[34m";
+    final String TEXT_BOLD = "\u001B[1m";
+    final String TEXT_RED = "\u001B[31m";
+    final  String TEXT_PICK="\u001B[35m";
     public static void main(String[] args) {
         int x = 8;
         int rowCount = 1;
@@ -24,7 +30,7 @@ public class Uppgiftthree {
                 int length = (int) (Math.log10(number) + 1);
 
                 if (length == 1)
-                    System.out.print("     " + number);
+                    System.out.print("     "+number);
                 if (length == 2)
                     System.out.print("    " + number);
                 if (length == 3)

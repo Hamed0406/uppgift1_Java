@@ -16,20 +16,21 @@ public class Uppgifttwo {
         final String TEXT_BLUE = "\u001B[34m";
         final String TEXT_BOLD = "\u001B[1m";
         final String TEXT_RED = "\u001B[31m";
+        final  String TEXT_PICK="\u001B[35m";
         int max = 99;
         int min = 1;
         int winNumber, userInput;
         int prize = 0, bank = 0;
-        boolean flag = true;
+        boolean flag = true,flagBonus=true;
         String winNumberString, userInputString;
 
 
-        System.out.print("Hi welcome to lottery program.This is first time you are using the system you get one free ticket \nyou pick two a digits number.\nIf you guess right digits in right order ;you win 1000SEK .\nIf you guess right digits ,but not in right order ;you win 5000 SEK.\n if you guess one right digits ; you win 1000 SEK . ");
-        System.out.print("If you you are ready to play enter your two digits without any space. ");
+        System.out.print(TEXT_PICK+TEXT_BOLD+"Hi welcome to lottery program.This is first time you are using the system you get one free ticket \nyou pick a number between 01-99.\nIf you guess right digits in right order ;you win 1000SEK .\nIf you guess right digits ,but not in right order ;you win 5000 SEK.\nIf you guess one right digits ; you win 1000 SEK . ");
+        System.out.print("\nIf you you are ready to play enter your two digits without any space: ");
         do {
             Random r = new Random();
             winNumber = r.nextInt((max - min) + 1) + min;
-            System.out.println(winNumber);
+            //System.out.println(winNumber);
 
             Scanner sc = new Scanner(System.in);
             userInput = sc.nextInt();
@@ -44,33 +45,35 @@ public class Uppgifttwo {
                 userInputString = Integer.toString(userInput);
             if (winNumberString.equals(userInputString)) {
                 prize = 10000;
-                System.out.println(" Matched lott .You wined " + prize + " SEK");
+                System.out.println("Matched lott .You wined "+TEXT_YELLOW + prize + " SEK");
                 bank = bank + prize;
 
-                System.out.println(" You have " + bank + " SEK do you want to continueY/N?");
+                System.out.println("You have "+TEXT_BLUE + bank + " SEK "+TEXT_RESET+"in your bank do you want to continueY/N?");
             } else if ((winNumberString.charAt(0) == userInputString.charAt(1)) && (winNumberString.charAt(1) == userInputString.charAt(0))) {
                 prize = 5000;
-                System.out.println(" Mirror lott .You wined " + prize + " SEK");
+                System.out.println("Mirror lott .You wined " + prize + " SEK");
                 bank = bank + prize;
 
-                System.out.println(" You have " + bank + " SEK in your bank do you want to continueY/N?");
+                System.out.println("You have "+TEXT_BLUE + bank + " SEK "+TEXT_RESET+"in your bank do you want to continueY/N?");
 
 
             } else if ((userInputString.charAt(0) == winNumberString.charAt(0)) || (userInputString.charAt(0) == winNumberString.charAt(1)) || (userInputString.charAt(1) == winNumberString.charAt(0)) || (userInputString.charAt(1) == winNumberString.charAt(1))) {
                 prize = 1000;
-                System.out.println(" half lott .You wined " + prize + " SEK");
+                System.out.println("Half lott .You wined " +TEXT_YELLOW+ prize + " SEK"+TEXT_RESET);
                 bank = bank + prize;
-
-                System.out.println(" You have " + bank + " SEK in your bank do you want to continueY/N?");
+                System.out.println("The lucky number was : "+TEXT_RED+winNumberString+TEXT_RESET);
+                System.out.println("You have "+TEXT_BLUE + bank + " SEK "+TEXT_RESET+"in your bank do you want to continueY/N?");
 
 
             } else if ((userInputString.charAt(0) != winNumberString.charAt(0)) && (userInputString.charAt(0) != winNumberString.charAt(1)) && (userInputString.charAt(1) != winNumberString.charAt(0)) && (userInputString.charAt(1) != winNumberString.charAt(1))) {
                 System.out.println("you lost");
+                System.out.println("The lucky number was : "+TEXT_RED+winNumberString+TEXT_RESET);
+
                 prize=0;
 
                 bank = bank + prize;
 
-                System.out.println(" You have " + bank + " SEK in your bank do you want to continueY/N?");
+                System.out.println("You have "+TEXT_BLUE + bank + " SEK "+TEXT_RESET+"in your bank do you want to continueY/N?");
 
             }
 
@@ -90,12 +93,15 @@ public class Uppgifttwo {
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.next();
         answer.toLowerCase();
-        if (answer.equals("y"))
+        if (answer.equals("y")) {
             flag = true;
-
-        else if (answer.equals("n"))
+System.out.println("Please enter your new number: ");
+        }
+        else if (answer.equals("n")) {
             flag = false;
+            System.out.println("Have good day!");
 
+        }
         return flag;
     }
 
