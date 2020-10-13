@@ -7,7 +7,11 @@ import java.util.Scanner;
 * Ett lottoprogram slumpar fram ett tvåsiffrigt tal mellan 01 och 99. Om användare gissar rätt nummer i rätt ordning, vinner användaren 10 000 kr. Om användaren gissar rätt nummer, men i fel ordning, vinner användaren 5 000 kr. Om användare gissar ett rätt nummer av de två, vinner användaren 1 000 kr.
 
 User story
-Som lottospelare vill jag kunna mata in ett tvåsiffrigt nummer i ett program och få besked om jag har gissat rätt och hur mycket jag har vunnit.*/
+Som lottospelare vill jag kunna mata in ett tvåsiffrigt nummer i ett program och få besked om jag har gissat rätt och hur mycket jag har vunnit.
+*
+* Uppgift 4 – bonus
+Givet övning 2 ovan, de två nummer som slumpas fram får inte vara samma siffror.
+* */
 public class Uppgifttwo {
 
     public static void main(String args[]) {
@@ -36,7 +40,7 @@ public class Uppgifttwo {
             while(!checkPairDigits(winNumber))
                 winNumber=lottNumber();
 
-            System.out.println(winNumber);
+          //  System.out.println(winNumber); Test program.
 
             Scanner sc = new Scanner(System.in);
             userInput = sc.nextInt();
