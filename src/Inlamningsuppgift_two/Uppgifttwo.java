@@ -29,8 +29,8 @@ public class Uppgifttwo {
 
 
         System.out.print(TEXT_PICK+TEXT_BOLD+"Hi welcome to lottery program.This is first time you are using the system you get one free ticket \nyou pick a number between 01-99.\nIf you guess right digits in right order ;you win 1000SEK .\nIf you guess right digits ,but not in right order ;you win 5000 SEK.\nIf you guess one right digits ; you win 1000 SEK . ");
-        System.out.print("You can choose between bonus mode and normal mood,in bonus mood you cant pick any pair digits. ");
-        System.out.print("Bonus mood ?Y/N ");
+        System.out.print("\n"+TEXT_YELLOW+"You can choose between bonus mode and normal mood,in bonus mood you cant pick any pair digits.Lucky number is not pair as well ");
+        System.out.print("Bonus mood ?Y/N "+TEXT_RESET);
        bonosCheck(flagBonus);
 
         System.out.print("\nIf you you are ready to play enter your two digits without any space: ");
