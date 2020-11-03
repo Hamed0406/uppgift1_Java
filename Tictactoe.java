@@ -1,4 +1,4 @@
-package Inlaminguppgift_Three;
+//package Inlaminguppgift_Three; Remove pakage name in old assignment
 
 import java.util.Random;
 import java.util.Scanner;
