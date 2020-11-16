@@ -27,4 +27,12 @@ public class Dog {
     public void setDogRace(String dogRace) {
         this.dogRace = dogRace;
     }
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "dogName='" + dogName + '\'' +
+                ", dogRace='" + dogRace + '\'' +
+                '}';
+    }
 }

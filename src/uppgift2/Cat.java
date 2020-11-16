@@ -27,4 +27,12 @@ public class Cat {
         this.cattName = cattName;
         this.catRace = catRace;
     }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "cattName='" + cattName + '\'' +
+                ", catRace='" + catRace + '\'' +
+                '}';
+    }
 }
