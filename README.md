@@ -20,8 +20,9 @@ Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (
 
 •	Demonstrera klasserna med en Main klass.
 
-## Definiera en klass Husse. 
-  Definiera lämpliga operationer så att Husse har ett namn, kan äga många hundar samt kan tala om vad han heter och vilka hundar han äger.
+## One to Many associationer ( En -> Många )
+
+  Definiera en klass Husse. Definiera lämpliga operationer så att Husse har ett namn, kan äga många hundar samt kan tala om vad han heter och vilka hundar han äger.
   
 •	Rita UML-diagram för Husse- och Hund-klasserna
 
