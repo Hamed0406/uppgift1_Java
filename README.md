@@ -7,12 +7,22 @@ First assignment has been done . I deleted unrelated files . I did initial commi
 
 Definiera en klass Hund, med en konstruktor som tar hundens namn och ras. Klassen skall dessutom ha operationer som returnerar hundens namn respektive ras.
 Definiera på samma sätt en klass Katt.
+
 •	Rita UML-diagram för Hund och Katt-klasserna
+
 •	Demonstrera klasserna med en Main klass som skapar hundar och katter och skriver ut deras namn och ras.
 
 ## One to One associationer ( En - > En )
 
 Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (Som objekt) Klassen skall ha operationer för att returnera Mattes namn samt katt-objektet.
+
 •	Rita UML-diagram för Matte- och Katt-klasserna
+
 •	Demonstrera klasserna med en Main klass.
 
+## Definiera en klass Husse. 
+  Definiera lämpliga operationer så att Husse har ett namn, kan äga många hundar samt kan tala om vad han heter och vilka hundar han äger.
+  
+•	Rita UML-diagram för Husse- och Hund-klasserna
+
+•	Demonstrera klasserna med en Main klass.
