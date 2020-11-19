@@ -26,10 +26,10 @@ Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (
   
 •	Rita UML-diagram för Husse- och Hund-klasserna. [Link to UML](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/UmlDiagrams/Uppgift2/Uml_Uppgift2_3.jpg)
 
-•	Demonstrera klasserna med en Main klass. [Link To Main Class] (https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_3/TestMainUppgift2_3.java)
+•	Demonstrera klasserna med en Main klass. [Link To Main Class](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_3/TestMainUppgift2_3.java)
 
 ## One to One, dubbelriktad association ( En < - > En) 
 
    Utöka klassen Katt med en operation som returnerar en referens till matte, dvs man kan fråga katten vem som är dess matte.
    [Link to UML](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/UmlDiagrams/Uppgift2/Uml_Uppgift2_4.png)
-[Link to Main Class] (https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_4/TestMainUppgift2_4.java)
+[Link to Main Class](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_4/TestMainUppgift2_4.java)
