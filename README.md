@@ -8,9 +8,9 @@ First assignment has been done . I deleted unrelated files . I did initial commi
 Definiera en klass Hund, med en konstruktor som tar hundens namn och ras. Klassen skall dessutom ha operationer som returnerar hundens namn respektive ras.
 Definiera på samma sätt en klass Katt.
 
-•	Rita UML-diagram för Hund och Katt-klasserna
+•	Rita UML-diagram för Hund och Katt-klasserna.[Link to UML](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/UmlDiagrams/Uppgift2/Uml_Uppgift2_1.jpg)
 
-•	Demonstrera klasserna med en Main klass som skapar hundar och katter och skriver ut deras namn och ras.
+•	Demonstrera klasserna med en Main klass som skapar hundar och katter och skriver ut deras namn och ras.[Link to Main Class](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_1/TestMainUppgift2_1.java)
 
 ## One to One associationer ( En - > En )
 
