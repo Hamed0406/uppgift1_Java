@@ -6,6 +6,7 @@ Definiera på samma sätt en klass Katt.
 public class Cat {
     String cattName;
     String catRace;
+    Matte catOwner;
 
     public String getCattName() {
         return cattName;
@@ -26,6 +27,11 @@ public class Cat {
     public Cat(String cattName, String catRace) {
         this.cattName = cattName;
         this.catRace = catRace;
+    }
+
+    public String getOwnerName(Matte catOwner)
+    {
+        return catOwner.getMamaOwnerName();
     }
 
     @Override

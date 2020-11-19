@@ -27,3 +27,7 @@ Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (
 •	Rita UML-diagram för Husse- och Hund-klasserna
 
 •	Demonstrera klasserna med en Main klass.
+
+## One to One, dubbelriktad association ( En < - > En)
+
+   Utöka klassen Katt med en operation som returnerar en referens till matte, dvs man kan fråga katten vem som är dess matte.

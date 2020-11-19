@@ -22,8 +22,8 @@ System.out.println("Test Dog name is: "+testDog.getDogName()+"\nTest Dog race is
 
         Husse testHusse=new Husse("Hamed",testDogArrayList);
         Dog testDog1,testDog2;
-        testDog1 = new Dog("Wolfy","GermanShaper");//set name and race by conductor for test1 .
-        testDog2=new Dog("Sgorty","Husky");//set name and race by conductor for test2 .
+        testDog1 = new Dog("Wolfy","GermanShaper");//set name and race by constructor  for test1 .
+        testDog2=new Dog("Snow White","Husky");//set name and race by constructor for test2 .
 
         testDogArrayList.add(testDog1);//Add to the list
         testDogArrayList.add(testDog2);//Add to the list
@@ -31,7 +31,8 @@ System.out.println("Test Dog name is: "+testDog.getDogName()+"\nTest Dog race is
         testHusse.printDogOwnerNameAndDogs();
 
 
+/*dubbelriktad association ( En < - > En)*/
 
-
+            System.out.println(" Cat name is : "+testCatt.getCattName()+" And owner name is "+testCatt.getOwnerName(testMatte));//Get owner name by cat class.
     }//end of main
 }//End of class TestMain
