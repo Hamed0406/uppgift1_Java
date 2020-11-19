@@ -30,3 +30,18 @@ hs_err_pid*
 /out/
 >>>>>>> 58de393... Initial commit
 /UmlDiagrams/Uppgift2/*.uml
+
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
