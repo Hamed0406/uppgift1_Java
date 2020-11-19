@@ -1,11 +1,11 @@
-package uppgift2;
+package uppgift2.uppgift2_1;
 /*
 * Definiera en klass Hund, med en konstruktor som tar hundens namn och ras. Klassen skall dessutom ha operationer som returnerar hundens namn respektive ras.
 Definiera på samma sätt en klass Katt.
 */
 public class Dog {
-    String dogName;
-    String dogRace;
+   private String dogName;
+   private String dogRace;
 
     public Dog(String dogName, String dogRace) {
         this.dogName = dogName;

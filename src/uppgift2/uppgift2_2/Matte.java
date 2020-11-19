@@ -1,4 +1,6 @@
-package uppgift2;
+package uppgift2.uppgift2_2;
+
+import uppgift2.uppgift2_1.CatOneToOneAssociationRelationshipToMatte;
 
 /*
 * One to One associationer ( En - > En )
@@ -8,11 +10,11 @@ Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (
 */
 public class Matte {
     String mamaOwnerName;
-    Cat catAsPet;
+    CatOneToOneAssociationRelationshipToMatte catOneToOneRelationshipToMatteAsPet;
 
-    public Matte(String mamaOwnerName, Cat catAsPet) {
+    public Matte(String mamaOwnerName, CatOneToOneAssociationRelationshipToMatte catOneToOneRelationshipToMatteAsPet) {
         this.mamaOwnerName = mamaOwnerName;
-        this.catAsPet = catAsPet;
+        this.catOneToOneRelationshipToMatteAsPet = catOneToOneRelationshipToMatteAsPet;
     }
 
     public String getMamaOwnerName() {
@@ -23,15 +25,15 @@ public class Matte {
         this.mamaOwnerName = mamaOwnerName;
     }
 
-    public Cat getCatAsPet() {
-        return catAsPet;
+    public CatOneToOneAssociationRelationshipToMatte getCatAsPet() {
+        return catOneToOneRelationshipToMatteAsPet;
     }
 
     @Override
     public String toString() {
         return "Matte{" +
                 "mamaOwnerName='" + mamaOwnerName + '\'' +
-                ", catAsPet=" + catAsPet +
+                ", catAsPet=" + catOneToOneRelationshipToMatteAsPet +
                 '}';
     }
 }//End of Matt Class
