@@ -1,12 +1,15 @@
 package uppgift2.uppgift2_4;
 
 
-
-
 public class CatOneToOneTwoWayAssociationRelationshipToMatte {
-   private String cattName;
-    private  String catRace;
+    private String cattName;
+    private String catRace;
     private MattOneToOneTwoWayAssociationRelationshipToCatt mattOneToOneTwoWayAssociationRelationshipToCattForGettingName;
+
+    public CatOneToOneTwoWayAssociationRelationshipToMatte(String cattName, String catRace) {
+        this.cattName = cattName;
+        this.catRace = catRace;
+    }
 
     public String getCattName() {
         return cattName;
@@ -24,16 +27,11 @@ public class CatOneToOneTwoWayAssociationRelationshipToMatte {
         this.catRace = catRace;
     }
 
-    public CatOneToOneTwoWayAssociationRelationshipToMatte(String cattName, String catRace) {
-        this.cattName = cattName;
-        this.catRace = catRace;
+    public String getMattename(MattOneToOneTwoWayAssociationRelationshipToCatt mattOneToOneTwoWayAssociationRelationshipToCattForGettingName) {
+
+        return mattOneToOneTwoWayAssociationRelationshipToCattForGettingName.getMamaOwnerName();
     }
 
-public String getMattename(MattOneToOneTwoWayAssociationRelationshipToCatt mattOneToOneTwoWayAssociationRelationshipToCattForGettingName)
-{
-
-    return  mattOneToOneTwoWayAssociationRelationshipToCattForGettingName.getMamaOwnerName();
-}
     @Override
     public String toString() {
         return "Cat{" +
