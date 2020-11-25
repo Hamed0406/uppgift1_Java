@@ -33,3 +33,6 @@ Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (
    Utöka klassen Katt med en operation som returnerar en referens till matte, dvs man kan fråga katten vem som är dess matte.
    [Link to UML](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/UmlDiagrams/Uppgift2/Uml_Uppgift2_4.png)
 [Link to Main Class](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_4/TestMainUppgift2_4.java)
+
+
+## Useful links i found.[Problem with path and templete Javafx](https://stackoverflow.com/questions/54291958/javafx-11-illegalaccesserror-when-creating-label/)
