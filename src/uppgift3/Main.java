@@ -10,8 +10,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -19,18 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-          /*  // BorderPane root = new BorderPane();
-            Button clickMe = new Button("Click me");
-            Button exit = new Button("Exit");
-            exit.setOnAction(e -> {
-                System.out.println("Exit app");
 
-                System.exit(0);
-
-            });//Using Landa expressions to call multiply method.
-
-            VBox root = new VBox();//Layout Vertical box
-            root.getChildren().addAll(exit, clickMe);*/
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
             Scene scene = new Scene(root);

@@ -54,8 +54,10 @@ public class MainController {
     public void start() {
         lblTime.setText("00:00:000");
         timeline = new Timeline(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
+
             @Override
             public void handle(ActionEvent event) {
+
                 changeTime(lblTime);
             }
         }));
