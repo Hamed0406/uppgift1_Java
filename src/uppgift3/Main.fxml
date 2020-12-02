@@ -34,10 +34,10 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="9.0" layoutY="74.0" prefHeight="194.0" prefWidth="383.0" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="74.0">
+      <TableView fx:id="tblTimerHistory" layoutX="9.0" layoutY="74.0" prefHeight="194.0" prefWidth="383.0" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="74.0">
         <columns>
-          <TableColumn fx:id="tableTimerHistory" prefWidth="264.800048828125" text="Date Time" />
-          <TableColumn prefWidth="117.5999755859375" text="Time" />
+          <TableColumn fx:id="timeStampData" prefWidth="264.800048828125" text="Date and Time" />
+          <TableColumn fx:id="lastTimeData" prefWidth="117.5999755859375" text="Time" />
         </columns>
       </TableView>
    </children>
