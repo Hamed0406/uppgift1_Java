@@ -35,4 +35,12 @@ Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (
 [Link to Main Class](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_4/TestMainUppgift2_4.java)
 
 
-## Useful links i found.[Problem with path and templete Javafx](https://stackoverflow.com/questions/54291958/javafx-11-illegalaccesserror-when-creating-label/)
+# uppgift3_Hamed_Adeli
+## Stopwatch with JavaFX
+
+[Link to UML](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/UmlDiagrams/uppgift3/Package%20uppgift3.png)
+[Link to Imag of APP](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/UmlDiagrams/uppgift3/ImagOfAPP.JPG)
+
+
+### Useful links i found.[Problem with path and templete Javafx](https://stackoverflow.com/questions/54291958/javafx-11-illegalaccesserror-when-creating-label/)
+### Useful link i found.[handy project](https://github.com/JonathanGiles/scenic-view)
