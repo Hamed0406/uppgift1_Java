@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="560.0" prefWidth="415.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" onMouseMoved="#digitalClock" prefHeight="560.0" prefWidth="415.0"
             xmlns="http://javafx.com/javafx/11.0.1" fx:controller="uppgift3.MainController">
     <children>
         <HBox alignment="CENTER" layoutX="32.0" layoutY="425.0" prefHeight="140.0" prefWidth="350.0" spacing="10.0">
@@ -36,7 +36,7 @@
             </placeholder>
             <columns>
                 <TableColumn fx:id="timeStampData" prefWidth="264.800048828125" text="Date and Time"/>
-                <TableColumn fx:id="lastTimeData" prefWidth="117.5999755859375" text="Time"/>
+                <TableColumn fx:id="lastTimeData" prefWidth="135.5999755859375" text="Time"/>
             </columns>
         </TableView>
         <SplitPane dividerPositions="0.5" layoutX="8.0" layoutY="4.0" orientation="VERTICAL" prefHeight="114.0"
@@ -45,9 +45,9 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="86.0" prefWidth="188.0">
                     <children>
                         <Label fx:id="lblClock" alignment="CENTER" layoutX="13.0" onMouseClicked="#digitalClock"
-                               prefHeight="50.0" prefWidth="370.0">
+                               prefHeight="50.0" prefWidth="370.0" text="Welcome to StopWatch">
                             <font>
-                                <Font size="24.0"/>
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
                     </children>
@@ -57,9 +57,9 @@
                         <HBox layoutX="8.0" layoutY="-1.0" prefHeight="54.0" prefWidth="384.0">
                             <children>
                                 <Label fx:id="lblTime" alignment="CENTER" prefHeight="50.0" prefWidth="383.0"
-                                       text="00:00:000 ">
+                                       text="Click on set bottun for seting Timer">
                                     <font>
-                                        <Font size="24.0"/>
+                                        <Font name="System Bold Italic" size="14.0"/>
                                     </font>
                                 </Label>
                             </children>
