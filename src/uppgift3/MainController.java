@@ -1,5 +1,6 @@
 package uppgift3;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -17,6 +18,9 @@ import javafx.util.Duration;
 
 import javax.imageio.IIOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -40,8 +44,14 @@ public class MainController implements Initializable {
     private TableColumn<TimeHistory, String> timeStampData;
     @FXML
     private TableColumn<TimeHistory, String> lastTimeData;
+    public ObservableList<TimeHistory> list = FXCollections.observableArrayList(
+            new TimeHistory(null, null)
+    );
+    @FXML
     private boolean timeFlagStart = true;
     private Timeline timeline;
+    @FXML
+    private Label lblClock;
     private int min = 0, sec = 0, milliS = 0;
     private String lastTime;
     private String timeStamp;
@@ -51,7 +61,7 @@ public class MainController implements Initializable {
         System.exit(0);
 
     }
-
+    private Timeline clock;
 
     public void changeTime(Label lblTime) {
         if (milliS == 1000) {
@@ -64,12 +74,14 @@ public class MainController implements Initializable {
         }
         lblTime.setText((((min / 10) == 0) ? "0" : "") + min + ":"
                 + (((sec / 10) == 0) ? "0" : "") + sec + ":"
-                + (((milliS / 10) == 0) ? "00" : (((milliS / 100) == 0) ? "0" : "")) + milliS++ + " Secs");
+                + (((milliS / 10) == 0) ? "00" : (((milliS / 100) == 0) ? "0" : "")) + milliS++);
         lastTime = lblTime.getText();
     }
 
     public void start() {
-        lblTime.setText("00:00:000");
+
+        digitalClock();
+        btnStart.setText("Start");
         timeline = new Timeline(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
 
             @Override
@@ -86,6 +98,7 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if (timeFlagStart) {
+
                     timeline.play();
                     timeFlagStart = false;
                     btnStart.setText("Stop");
@@ -93,13 +106,11 @@ public class MainController implements Initializable {
                     timeline.pause();
                     timeFlagStart = true;
                     btnStart.setText("Start");
-                    timeStamp = java.time.LocalDateTime.now().toString();
-                    //TODO Popout time stamp and Last Time in Tableview.
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String timeStamp = now.format(formatter);
                     TimeHistory timeHistory = new TimeHistory(timeStamp, lastTime);
-                    System.out.println(timeHistory);
-                     ObservableList<TimeHistory> list = FXCollections.observableArrayList(
-                            new TimeHistory(timeStamp, lastTime)
-                    );
+                    list.add(timeHistory);
 
 
                 }
@@ -109,29 +120,39 @@ public class MainController implements Initializable {
 
     }
 
-
     public void reset(ActionEvent event) {
         min = 0;
         sec = 0;
         milliS = 0;
         timeline.pause();
         lblTime.setText("00:00:000");
+        tblTimerHistory.getItems().clear();
         if (!timeFlagStart) {
             timeFlagStart = true;
             btnStart.setText("Start");
         }
     }
 
-
-
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle,ObservableList list) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         timeStampData.setCellValueFactory(new PropertyValueFactory<TimeHistory, String>("timeStampData"));
         lastTimeData.setCellValueFactory(new PropertyValueFactory<TimeHistory, String>("lastTimeData"));
         tblTimerHistory.setItems(list);
 
     }
+
+    public void digitalClock() {
+
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            LocalTime currentTime = LocalTime.now();
+            lblClock.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+    }
+
 }
 
 

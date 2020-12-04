@@ -1,44 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uppgift3.MainController">
-   <children>
-      <HBox alignment="CENTER" layoutX="25.0" layoutY="316.0" prefHeight="140.0" prefWidth="350.0" spacing="10.0">
-         <children>
-            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#start" prefHeight="60.0" prefWidth="200.0" text="Start/Stop">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnReset" layoutX="136.0" layoutY="16.0" mnemonicParsing="false" onAction="#reset" prefHeight="60.0" prefWidth="100.0" text="Reset">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnExit" layoutX="240.0" layoutY="16.0" mnemonicParsing="false" onAction="#exit" prefHeight="60.0" prefWidth="100.0" text="Exit">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <Label fx:id="lblTime" alignment="CENTER" layoutX="26.0" layoutY="14.0" prefHeight="50.0" prefWidth="350.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tblTimerHistory" layoutX="9.0" layoutY="74.0" prefHeight="194.0" prefWidth="383.0" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="74.0">
-        <columns>
-          <TableColumn fx:id="timeStampData" prefWidth="264.800048828125" text="Date and Time" />
-          <TableColumn fx:id="lastTimeData" prefWidth="117.5999755859375" text="Time" />
-        </columns>
-      </TableView>
-   </children>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="560.0" prefWidth="415.0"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="uppgift3.MainController">
+    <children>
+        <HBox alignment="CENTER" layoutX="32.0" layoutY="425.0" prefHeight="140.0" prefWidth="350.0" spacing="10.0">
+            <children>
+                <Button fx:id="btnStart" mnemonicParsing="false" onAction="#start" prefHeight="60.0" prefWidth="200.0"
+                        text="Set Stop Watch">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="btnReset" layoutX="136.0" layoutY="16.0" mnemonicParsing="false" onAction="#reset"
+                        prefHeight="60.0" prefWidth="100.0" text="Reset">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="btnExit" layoutX="240.0" layoutY="16.0" mnemonicParsing="false" onAction="#exit"
+                        prefHeight="60.0" prefWidth="100.0" text="Exit">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+        <TableView fx:id="tblTimerHistory" layoutX="5.0" layoutY="123.0" prefHeight="310.0" prefWidth="363.0"
+                   AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="8.0"
+                   AnchorPane.topAnchor="123.0">
+            <placeholder>
+                <Label text="No Time Table History had been added yet"/>
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="timeStampData" prefWidth="264.800048828125" text="Date and Time"/>
+                <TableColumn fx:id="lastTimeData" prefWidth="117.5999755859375" text="Time"/>
+            </columns>
+        </TableView>
+        <SplitPane dividerPositions="0.5" layoutX="8.0" layoutY="4.0" orientation="VERTICAL" prefHeight="114.0"
+                   prefWidth="402.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="86.0" prefWidth="188.0">
+                    <children>
+                        <Label fx:id="lblClock" alignment="CENTER" layoutX="13.0" onMouseClicked="#digitalClock"
+                               prefHeight="50.0" prefWidth="370.0">
+                            <font>
+                                <Font size="24.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="121.0">
+                    <children>
+                        <HBox layoutX="8.0" layoutY="-1.0" prefHeight="54.0" prefWidth="384.0">
+                            <children>
+                                <Label fx:id="lblTime" alignment="CENTER" prefHeight="50.0" prefWidth="383.0"
+                                       text="00:00:000 ">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>
