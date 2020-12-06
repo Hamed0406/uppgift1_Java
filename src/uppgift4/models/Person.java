@@ -8,15 +8,19 @@ import javafx.beans.property.SimpleStringProperty;
  * h.adeli.meadeli@gmail.com
  * 12/6/2020
  */
+
+
+
+
 public class Person {
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;
-    private final SimpleIntegerProperty age;
+    private final SimpleStringProperty age;
 
-    public Person(String firstName, String lastName, Integer age) {
+    public Person(String firstName, String lastName, String age) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
-        this.age = new SimpleIntegerProperty(age);
+        this.age = new SimpleStringProperty(age);
     }
 
     public String getFirstName() {
@@ -43,15 +47,15 @@ public class Person {
         return lastName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age.get();
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age.set(age);
     }
 
-    public SimpleIntegerProperty ageProperty() {
+    public SimpleStringProperty ageProperty() {
         return age;
     }
 

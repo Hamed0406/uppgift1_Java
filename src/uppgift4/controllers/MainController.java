@@ -28,7 +28,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Person, String> lastNameColumn;
     @FXML
-    private TableColumn<Person, Integer> ageColumn;
+    private TableColumn<Person, String> ageColumn;
     @FXML
     private Label lbFirstName;
     @FXML
@@ -43,7 +43,7 @@ public class MainController implements Initializable {
     private Button btnUpdate;
     private String firstName;
     private String lastName;
-    private Integer age;
+    private String age;
 
 
     @Override
