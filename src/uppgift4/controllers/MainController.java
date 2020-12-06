@@ -2,12 +2,13 @@ package uppgift4.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import uppgift4.models.Person;
 
@@ -30,11 +31,11 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Person, String> ageColumn;
     @FXML
-    private Label lbFirstName;
+    private TextField tfFirstName;
     @FXML
-    private Label lbLastName;
+    private TextField tfLastName;
     @FXML
-    private Label lbAge;
+    private TextField tfAge;
     @FXML
     private Button btnAdd;
     @FXML
@@ -45,6 +46,15 @@ public class MainController implements Initializable {
     private String lastName;
     private String age;
 
+    //Add Functionality a persson to Table view
+    public void addToTable(ActionEvent event) {
+//Add a new person
+        list.add(new Person(tfFirstName.getText(), tfLastName.getText(), tfAge.getText()));
+//Clear TextFields
+        tfFirstName.clear();
+        tfLastName.clear();
+        tfAge.clear();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
