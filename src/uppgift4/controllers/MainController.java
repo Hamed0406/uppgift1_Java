@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
  * 12/6/2020
  */
 public class MainController implements Initializable {
-    public ObservableList<Person> list = FXCollections.observableArrayList();
+    public ObservableList<Person> list = FXCollections.observableArrayList();// TODO Load XML files and ADD to Table view.
     @FXML
     private TableView<Person> tableView;
     @FXML
@@ -48,12 +48,28 @@ public class MainController implements Initializable {
 
     //Add Functionality a persson to Table view
     public void addToTable(ActionEvent event) {
+
 //Add a new person
-        list.add(new Person(tfFirstName.getText(), tfLastName.getText(), tfAge.getText()));
+        //Adding to the local string for saving in XML file.
+        firstName=tfFirstName.getText();
+        lastName=tfLastName.getText();
+        age=tfAge.getText();
+        list.add(new Person(firstName,lastName ,age ));
 //Clear TextFields
         tfFirstName.clear();
         tfLastName.clear();
         tfAge.clear();
+        //TODO add a person to XML file
+    }
+
+    public void deleteFromTable(ActionEvent event)
+    {// get value before deleting .
+        firstName=tableView.getSelectionModel().getSelectedItem().getFirstName();
+        lastName=tableView.getSelectionModel().getSelectedItem().getLastName();
+        age=tableView.getSelectionModel().getSelectedItem().getAge();
+        //Delete from table view .
+        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+        //TODO Delete from XML file
     }
 
     @Override
