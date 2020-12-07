@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import uppgift4.models.Person;
 
 import java.net.URL;
@@ -52,9 +53,9 @@ public class MainController implements Initializable {
 //Add a new person
         //Adding to the local string for saving in XML file.
         firstName=tfFirstName.getText();
-        lastName=tfLastName.getText();
-        age=tfAge.getText();
-        list.add(new Person(firstName,lastName ,age ));
+        lastName = tfLastName.getText();
+        age = tfAge.getText();
+        list.add(new Person(firstName, lastName, age));
 //Clear TextFields
         tfFirstName.clear();
         tfLastName.clear();
@@ -62,14 +63,50 @@ public class MainController implements Initializable {
         //TODO add a person to XML file
     }
 
-    public void deleteFromTable(ActionEvent event)
-    {// get value before deleting .
-        firstName=tableView.getSelectionModel().getSelectedItem().getFirstName();
-        lastName=tableView.getSelectionModel().getSelectedItem().getLastName();
-        age=tableView.getSelectionModel().getSelectedItem().getAge();
+    public void deleteFromTable(ActionEvent event) {// get value before deleting .
+        firstName = tableView.getSelectionModel().getSelectedItem().getFirstName();
+        lastName = tableView.getSelectionModel().getSelectedItem().getLastName();
+        age = tableView.getSelectionModel().getSelectedItem().getAge();
         //Delete from table view .
         tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
         //TODO Delete from XML file
+    }
+
+    public void updateTable(ActionEvent event) {
+        //Edit mood for Table view with double click
+        tableView.setEditable(true);
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//First name Column edit
+        firstNameColumn.setOnEditCommit(
+                (TableColumn.CellEditEvent<Person, String> t) -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setFirstName(t.getNewValue());
+                });
+        firstName = tableView.getSelectionModel().getSelectedItem().getFirstName();
+
+//Last name Column edit
+
+        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastNameColumn.setOnEditCommit(
+                (TableColumn.CellEditEvent<Person, String> t) -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setLastName(t.getNewValue());
+                });
+        lastName = tableView.getSelectionModel().getSelectedItem().getLastName();
+
+//Age  Column edit
+
+        ageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        ageColumn.setOnEditCommit(
+                (TableColumn.CellEditEvent<Person, String> t) -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setAge(t.getNewValue());
+                });
+        age = tableView.getSelectionModel().getSelectedItem().getAge();
+
+
+
+//TODO update XML file
     }
 
     @Override
