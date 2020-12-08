@@ -13,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import uppgift4.models.Person;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,19 +45,24 @@ public class MainController implements Initializable {
     private Button btnDelete;
     @FXML
     private Button btnUpdate;
+    @FXML
+    private Button btnWriteXML;
+    @FXML
+    private Button btnLoadXML;
     private String firstName;
     private String lastName;
     private String age;
 
     //Add Functionality a persson to Table view
-    public void addToTable(ActionEvent event) {
+    public void addToTable(ActionEvent event) throws TransformerException, ParserConfigurationException {
 
 //Add a new person
         //Adding to the local string for saving in XML file.
-        firstName=tfFirstName.getText();
+        firstName = tfFirstName.getText();
         lastName = tfLastName.getText();
         age = tfAge.getText();
         list.add(new Person(firstName, lastName, age));
+
 //Clear TextFields
         tfFirstName.clear();
         tfLastName.clear();
@@ -105,7 +112,6 @@ public class MainController implements Initializable {
         age = tableView.getSelectionModel().getSelectedItem().getAge();
 
 
-
 //TODO update XML file
     }
 
@@ -115,5 +121,18 @@ public class MainController implements Initializable {
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         tableView.setItems(list);
+    }
+
+    public ObservableList<Person> getList() {
+        return list;
+    }
+
+    public void writeToXML(ActionEvent event) throws TransformerException, ParserConfigurationException {
+        XMLController XMLController = new XMLController();
+        XMLController.writePersonToXMl(list);
+    }
+
+    public void loadFromXML(ActionEvent event) {
+        //TODO Load from XML
     }
 }

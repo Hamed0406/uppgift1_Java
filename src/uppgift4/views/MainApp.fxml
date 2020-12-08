@@ -2,20 +2,28 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uppgift4.controllers.MainController">
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="490.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="uppgift4.controllers.MainController">
     <children>
-        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="216.0" prefWidth="619.0">
                     <children>
-                        <SplitPane dividerPositions="0.7424242424242424" layoutX="99.0" layoutY="14.0" prefHeight="196.0" prefWidth="598.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.7424242424242424" layoutX="99.0" layoutY="14.0"
+                                   prefHeight="196.0" prefWidth="598.4" AnchorPane.bottomAnchor="0.0"
+                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <items>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
-                                        <GridPane layoutX="-6.0" prefHeight="194.4" prefWidth="440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
+                                        <GridPane layoutX="-6.0" prefHeight="194.4" prefWidth="440.0"
+                                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0"
+                                                  AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
                                                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -52,30 +60,8 @@
                            <children>
                               <VBox alignment="CENTER" layoutX="14.0" prefHeight="194.4" prefWidth="150.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                     <Button fx:id="btnAdd" alignment="CENTER" mnemonicParsing="false" onAction="#addToTable" prefHeight="30.0" prefWidth="62.0" text="Add" textAlignment="CENTER">
-                                         <effect>
-                                             <ColorAdjust />
-                                         </effect>
-                                         <opaqueInsets>
-                                             <Insets />
-                                         </opaqueInsets>
-                                         <VBox.margin>
-                                             <Insets top="20.0" />
-                                         </VBox.margin>
-                                     </Button>
-                                     <Button fx:id="btnDelete" alignment="CENTER" layoutX="60.0" layoutY="95.0" mnemonicParsing="false" onAction="#deleteFromTable" prefHeight="26.0" prefWidth="58.0" text="Delete" textAlignment="CENTER">
-                                         <effect>
-                                             <ColorAdjust />
-                                         </effect>
-                                         <opaqueInsets>
-                                             <Insets />
-                                         </opaqueInsets>
-                                         <VBox.margin>
-                                             <Insets top="20.0" />
-                                         </VBox.margin>
-                                     </Button>
-                                     <Button fx:id="btnUpdate" alignment="CENTER" layoutX="60.0" layoutY="107.0"
-                                             mnemonicParsing="false" onAction="#updateTable" text="Update"
+                                     <Button fx:id="btnAdd" alignment="CENTER" mnemonicParsing="false"
+                                             onAction="#addToTable" prefHeight="37.0" prefWidth="84.0" text="Add"
                                              textAlignment="CENTER">
                                          <effect>
                                              <ColorAdjust/>
@@ -86,6 +72,41 @@
                                          <VBox.margin>
                                              <Insets top="20.0"/>
                                          </VBox.margin>
+                                         <font>
+                                             <Font size="18.0"/>
+                                         </font>
+                                     </Button>
+                                     <Button fx:id="btnDelete" alignment="CENTER" layoutX="60.0" layoutY="95.0"
+                                             mnemonicParsing="false" onAction="#deleteFromTable" prefHeight="38.0"
+                                             prefWidth="84.0" text="Delete" textAlignment="CENTER">
+                                         <effect>
+                                             <ColorAdjust/>
+                                         </effect>
+                                         <opaqueInsets>
+                                             <Insets/>
+                                         </opaqueInsets>
+                                         <VBox.margin>
+                                             <Insets top="20.0"/>
+                                         </VBox.margin>
+                                         <font>
+                                             <Font size="18.0"/>
+                                         </font>
+                                     </Button>
+                                     <Button fx:id="btnUpdate" alignment="CENTER" layoutX="60.0" layoutY="107.0"
+                                             mnemonicParsing="false" onAction="#updateTable" prefHeight="43.0"
+                                             prefWidth="84.0" text="Update" textAlignment="CENTER">
+                                         <effect>
+                                             <ColorAdjust/>
+                                         </effect>
+                                         <opaqueInsets>
+                                             <Insets/>
+                                         </opaqueInsets>
+                                         <VBox.margin>
+                                             <Insets top="20.0"/>
+                                         </VBox.margin>
+                                         <font>
+                                             <Font size="18.0"/>
+                                         </font>
                                      </Button>
                                  </children>
                               </VBox>
@@ -96,15 +117,51 @@
                </children>
             </AnchorPane>
           <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="598.0">
-               <children>
-                  <TableView fx:id="tableView" layoutX="142.0" layoutY="-2.0" prefHeight="196.0" prefWidth="598.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="firstNameColumn" prefWidth="228.79995423555374" text="First Name" />
-                      <TableColumn fx:id="lastNameColumn" prefWidth="232.0000762939453" text="Last Name" />
-                        <TableColumn fx:id="ageColumn" minWidth="0.0" prefWidth="138.3999786376953" text="Age" />
-                    </columns>
+              <children>
+                  <TableView fx:id="tableView" layoutX="-9.0" prefHeight="162.0" prefWidth="610.0"
+                             AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="-3.0"
+                             AnchorPane.topAnchor="0.0">
+                      <columns>
+                          <TableColumn fx:id="firstNameColumn" prefWidth="228.79995423555374" text="First Name"/>
+                          <TableColumn fx:id="lastNameColumn" prefWidth="232.0000762939453" text="Last Name"/>
+                          <TableColumn fx:id="ageColumn" minWidth="0.0" prefWidth="138.3999786376953" text="Age"/>
+                      </columns>
                   </TableView>
-               </children>
+                  <HBox alignment="CENTER" layoutX="-5.0" layoutY="162.0" prefHeight="79.0" prefWidth="602.0"
+                        spacing="30.0">
+                      <children>
+                          <Button fx:id="btnWriteXML" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                  onAction="#writeToXML" prefHeight="39.0" prefWidth="166.0" text="Save to XML"
+                                  textAlignment="CENTER">
+                              <effect>
+                                  <ColorAdjust/>
+                              </effect>
+                              <opaqueInsets>
+                                  <Insets/>
+                              </opaqueInsets>
+                              <font>
+                                  <Font size="18.0"/>
+                              </font>
+                              <HBox.margin>
+                                  <Insets/>
+                              </HBox.margin>
+                          </Button>
+                          <Button fx:id="btnLoadXML" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0"
+                                  layoutY="30.0" mnemonicParsing="false" onAction="#loadFromXML" prefHeight="39.0"
+                                  prefWidth="166.0" text="Load From XML" textAlignment="CENTER">
+                              <effect>
+                                  <ColorAdjust/>
+                              </effect>
+                              <opaqueInsets>
+                                  <Insets/>
+                              </opaqueInsets>
+                              <font>
+                                  <Font size="18.0"/>
+                              </font>
+                          </Button>
+                      </children>
+                  </HBox>
+              </children>
             </AnchorPane>
         </items>
       </SplitPane>
