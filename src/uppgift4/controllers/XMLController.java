@@ -50,8 +50,9 @@ public class XMLController {
         //Build XML Element and text nodes
         Element rootElement = xmlDoc.createElement("persons");
         Element mainElement = xmlDoc.createElement("person");
-        for (int i = 0; i < list.size(); i++)
-            rootElement.appendChild(setPerson(list.get(i).getFirstName(), list.get(i).getLastName(), list.get(i).getAge(), xmlDoc));//Append new person
+        for (int i = 0; i < list.size(); i++) {
+            rootElement.appendChild(setPerson(i, list.get(i).getFirstName(), list.get(i).getLastName(), list.get(i).getAge(), xmlDoc));//Append new person
+        }
         xmlDoc.appendChild(rootElement);
 
         //Set output format
@@ -70,8 +71,11 @@ public class XMLController {
 
     }
 
-    private Element setPerson(String firstName, String lastName, String age, Document xmlDoc) {
+    private Element setPerson(int id,String firstName, String lastName, String age, Document xmlDoc) {
+
         Element newPerson = xmlDoc.createElement("person");
+        newPerson.setAttribute("ID",String.valueOf(id));
+
         Text firstNameText = xmlDoc.createTextNode(firstName);
         Element firstNameElement = xmlDoc.createElement("firstName");
         firstNameElement.appendChild(firstNameText);
