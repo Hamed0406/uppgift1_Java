@@ -11,10 +11,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import uppgift4.models.Person;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,6 +60,8 @@ public class MainController implements Initializable {
     private String firstName;
     private String lastName;
     private String age;
+    public static final String xmlFilePath = "C:\\Users\\Hamed.000\\git\\uppgifttar\\src\\uppgift4\\XMLDataBase.xml";
+    public XMLController xmlController = new XMLController();
 
     //Add Functionality a persson to Table view
     public void addToTable(ActionEvent event) throws TransformerException, ParserConfigurationException {
@@ -63,23 +73,26 @@ public class MainController implements Initializable {
         age = tfAge.getText();
         list.add(new Person(firstName, lastName, age));
 
-//Clear TextFields
+        //Clear TextFields
         tfFirstName.clear();
         tfLastName.clear();
         tfAge.clear();
-        //TODO add a person to XML file
+        //Update Xml file with Add
+        xmlController.writePersonToXMl(list);
     }
 
-    public void deleteFromTable(ActionEvent event) {// get value before deleting .
+    public void deleteFromTable(ActionEvent event) throws TransformerException, ParserConfigurationException {// get value before deleting .
         firstName = tableView.getSelectionModel().getSelectedItem().getFirstName();
         lastName = tableView.getSelectionModel().getSelectedItem().getLastName();
         age = tableView.getSelectionModel().getSelectedItem().getAge();
         //Delete from table view .
         tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-        //TODO Delete from XML file
+        //Update Xml file with Deleting
+        xmlController.writePersonToXMl(list);
+
     }
 
-    public void updateTable(ActionEvent event) {
+    public void updateTable(ActionEvent event) throws TransformerException, ParserConfigurationException {
         //Edit mood for Table view with double click
         tableView.setEditable(true);
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -89,7 +102,7 @@ public class MainController implements Initializable {
                     t.getTableView().getItems().get(
                             t.getTablePosition().getRow()).setFirstName(t.getNewValue());
                 });
-        firstName = tableView.getSelectionModel().getSelectedItem().getFirstName();
+
 
 //Last name Column edit
 
@@ -99,7 +112,6 @@ public class MainController implements Initializable {
                     t.getTableView().getItems().get(
                             t.getTablePosition().getRow()).setLastName(t.getNewValue());
                 });
-        lastName = tableView.getSelectionModel().getSelectedItem().getLastName();
 
 //Age  Column edit
 
@@ -109,10 +121,10 @@ public class MainController implements Initializable {
                     t.getTableView().getItems().get(
                             t.getTablePosition().getRow()).setAge(t.getNewValue());
                 });
-        age = tableView.getSelectionModel().getSelectedItem().getAge();
+        //Update Xml file with Update
+        xmlController.writePersonToXMl(list);
 
 
-//TODO update XML file
     }
 
     @Override
@@ -123,16 +135,42 @@ public class MainController implements Initializable {
         tableView.setItems(list);
     }
 
-    public ObservableList<Person> getList() {
-        return list;
-    }
 
     public void writeToXML(ActionEvent event) throws TransformerException, ParserConfigurationException {
-        XMLController XMLController = new XMLController();
-        XMLController.writePersonToXMl(list);
+
+        xmlController.writePersonToXMl(list);
     }
 
-    public void loadFromXML(ActionEvent event) {
-        //TODO Load from XML
+    public void loadFromXML(ActionEvent event) throws IOException, SAXException, ParserConfigurationException {
+        list.clear();
+        String firstNameT = null;
+        String lastNameT = null;
+        String ageT = null;
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document xmlDOc = documentBuilder.parse(xmlFilePath);
+        //read array of student elements
+        NodeList personList = xmlDOc.getElementsByTagName("person");
+
+
+        for (int i = 0; i < personList.getLength(); i++) {
+            Node p = personList.item(i);
+            if (p.getNodeType() == Node.ELEMENT_NODE) {
+                Element person = (Element) p;
+                String ID = person.getAttribute("ID");
+                NodeList nameList = person.getChildNodes();
+                firstNameT = person.getElementsByTagName("firstName").item(0).getTextContent();
+                lastNameT = person.getElementsByTagName("lastName").item(0).getTextContent();
+                ageT = person.getElementsByTagName("age").item(0).getTextContent();
+                Person tempP = new Person(firstNameT, lastNameT, ageT);
+                list.add(tempP);
+
+            }
+
+
+        }
+     //   System.out.println("Reade XML");
     }
+
+
 }

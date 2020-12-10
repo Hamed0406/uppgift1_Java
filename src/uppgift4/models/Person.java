@@ -1,6 +1,5 @@
 package uppgift4.models;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -16,6 +15,7 @@ public class Person {
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;
     private final SimpleStringProperty age;
+
 
     public Person(String firstName, String lastName, String age) {
         this.firstName = new SimpleStringProperty(firstName);
