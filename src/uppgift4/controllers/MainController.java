@@ -60,7 +60,7 @@ public class MainController implements Initializable {
     private String firstName;
     private String lastName;
     private String age;
-    public static final String xmlFilePath = "C:\\Users\\Hamed.000\\git\\uppgifttar\\src\\uppgift4\\XMLDataBase.xml";
+    public static final String xmlFilePath = "src\\uppgift4\\XMLDataBase.xml";
     public XMLController xmlController = new XMLController();
 
     //Add Functionality a persson to Table view

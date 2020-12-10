@@ -24,7 +24,7 @@ import java.util.List;
 
 public class XMLController {
 
-    public static final String xmlFilePath = "C:\\Users\\Hamed.000\\git\\uppgifttar\\src\\uppgift4\\XMLDataBase.xml";
+    public static final String xmlFilePath = "src\\uppgift4\\XMLDataBase.xml";
 
     public void writePersonToXMl(List<Person> list) throws ParserConfigurationException, TransformerException {
 
