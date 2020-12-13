@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.635678391959799" maxHeight="-Infinity" maxWidth="-Infinity"
-           minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0"
-           prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-           fx:controller="uppgift5.controllers.LoginController">
+
+<SplitPane dividerPositions="0.635678391959799" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uppgift5.controllers.LoginController">
     <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="595.0">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="600.0">
             <children>
-                <TextField fx:id="txUserID" alignment="CENTER" layoutX="225.0" layoutY="125.0" promptText="User ID"/>
-                <PasswordField fx:id="txPass" alignment="CENTER" layoutX="225.0" layoutY="168.0" promptText="Password"/>
-                <Label fx:id="lbLoginMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="151.0" layoutY="208.0"
-                       prefHeight="32.0" prefWidth="296.0" textFill="#a41010"/>
-                <Label alignment="CENTER" layoutX="118.0" layoutY="123.0" prefHeight="32.0" prefWidth="95.0"
-                       text="User ID"/>
-                <Label alignment="CENTER" layoutX="118.0" layoutY="165.0" prefHeight="32.0" prefWidth="95.0"
-                       text="Password"/>
+                <TextField fx:id="txUserID" alignment="CENTER" layoutX="225.0" layoutY="125.0" promptText="User ID" />
+                <PasswordField fx:id="txPass" alignment="CENTER" layoutX="225.0" layoutY="168.0" promptText="Password" />
+                <Label fx:id="lbLoginMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="151.0" layoutY="208.0" prefHeight="32.0" prefWidth="296.0" textFill="#a41010" />
+                <Label alignment="CENTER" layoutX="118.0" layoutY="123.0" prefHeight="32.0" prefWidth="95.0" text="User ID" />
+                <Label alignment="CENTER" layoutX="118.0" layoutY="165.0" prefHeight="32.0" prefWidth="95.0" text="Password" />
             </children>
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="598.0">
             <children>
-                <Button fx:id="btnLogin" contentDisplay="CENTER" layoutX="101.0" layoutY="44.0" mnemonicParsing="false"
-                        onAction="#setBtnLogin" prefHeight="53.0" prefWidth="122.0" text="Login"
-                        textAlignment="CENTER"/>
-                <Button fx:id="btnSignUp" contentDisplay="CENTER" layoutX="235.0" layoutY="44.0" mnemonicParsing="false"
-                        prefHeight="53.0" prefWidth="122.0" text="SignUp" textAlignment="CENTER"/>
-                <Button fx:id="btnExit" contentDisplay="CENTER" layoutX="374.0" layoutY="44.0" mnemonicParsing="false"
-                        onAction="#setBtnExit" prefHeight="53.0" prefWidth="122.0" text="Exit" textAlignment="CENTER"/>
+                <Button fx:id="btnLogin" contentDisplay="CENTER" layoutX="101.0" layoutY="44.0" mnemonicParsing="false" onAction="#login" prefHeight="53.0" prefWidth="122.0" text="Login" textAlignment="CENTER" />
+                <Button fx:id="btnSignUp" contentDisplay="CENTER" layoutX="235.0" layoutY="44.0" mnemonicParsing="false" onAction="#fromLoginToSignUpForm" prefHeight="53.0" prefWidth="122.0" text="SignUp" textAlignment="CENTER" />
+                <Button fx:id="btnExit" contentDisplay="CENTER" layoutX="374.0" layoutY="44.0" mnemonicParsing="false" onAction="#setBtnExit" prefHeight="53.0" prefWidth="122.0" text="Exit" textAlignment="CENTER" />
             </children></AnchorPane>
   </items>
 </SplitPane>
