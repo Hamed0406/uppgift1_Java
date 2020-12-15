@@ -40,11 +40,11 @@ public class LoginController {
     }
 
     public void login(ActionEvent event) {
-        if (txUserID.getText().isBlank()==false&&txPass.getText().isBlank() ==false) {
-validateLogin();
+        if (txUserID.getText().isBlank() == false && txPass.getText().isBlank() == false) {
+            validateLogin();
 
         } else {
-            lbLoginMessage.setText("Please enter User ID  or Password !!!" );
+            lbLoginMessage.setText("Please enter User ID  or Password !!!");
 
         }
     }
@@ -59,10 +59,10 @@ validateLogin();
 
     public void fromLoginToSignUpForm(ActionEvent event) throws IOException {
 //TODO change Scene to SignUP from.
-        Parent formViewParent= FXMLLoader.load(getClass().getResource("../views/SignUpFormView.fxml"));
-        Scene  formViewScene= new Scene(formViewParent);
+        Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/SignUpFormView.fxml"));
+        Scene formViewScene = new Scene(formViewParent);
 //Get stage Information
-        Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(formViewScene);
         window.show();
     }
