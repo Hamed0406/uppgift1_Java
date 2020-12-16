@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import uppgift5.models.AuthenticationModel;
 
 import java.io.IOException;
 
@@ -33,15 +34,28 @@ public class LoginController {
     private PasswordField txPass;
     @FXML
     private Label lbLoginMessage;
+    public String searchUser;
+    public String searchPassword;
+
 
     public void setBtnExit(ActionEvent event) {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }
 
-    public void login(ActionEvent event) {
+    public void login(ActionEvent event) throws Exception {
+
+        AuthenticationModel authenticationLogin = new AuthenticationModel();
         if (txUserID.getText().isBlank() == false && txPass.getText().isBlank() == false) {
-            validateLogin();
+            searchUser = txUserID.getText();
+            searchPassword = txPass.getText();
+            authenticationLogin.setPassword(searchPassword);
+            authenticationLogin.setUserID(searchUser);
+            if (validateLogin(authenticationLogin))
+                fromLoginToAccountView(event);
+            else
+                lbLoginMessage.setText("Wrong UserID/Password!!!");
+
 
         } else {
             lbLoginMessage.setText("Please enter User ID  or Password !!!");
@@ -49,8 +63,12 @@ public class LoginController {
         }
     }
 
-    public void validateLogin() {
+    public Boolean validateLogin(AuthenticationModel login) throws Exception {
+        Boolean validated = false;
+        XmlController xmlController = new XmlController();
+        validated = xmlController.searchUser(login);
 
+        return validated;
 //TODO get result from XML file
         //Validate from input and go to next page
 
@@ -60,6 +78,15 @@ public class LoginController {
     public void fromLoginToSignUpForm(ActionEvent event) throws IOException {
 //TODO change Scene to SignUP from.
         Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/SignUpFormView.fxml"));
+        Scene formViewScene = new Scene(formViewParent);
+//Get stage Information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(formViewScene);
+        window.show();
+    }
+
+    public void fromLoginToAccountView(ActionEvent event) throws IOException {
+        Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/AccountView.fxml"));
         Scene formViewScene = new Scene(formViewParent);
 //Get stage Information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

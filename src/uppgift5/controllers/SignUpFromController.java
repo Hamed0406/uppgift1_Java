@@ -67,11 +67,13 @@ public class SignUpFromController {
         txUserID.clear();
         txPassword.clear();
         if (list.isEmpty()) {
-            loadfromXMl(list);
             list.add(user);
+            xmlController.writeUserToXMl(list);
 
 
         } else {
+            loadfromXMl(list);
+
             list.add(user);
         }
         // System.out.println(list.get(0).getFirstName());
@@ -88,6 +90,14 @@ public class SignUpFromController {
         String balanceT = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        // File file = new File(xmlFilePath);
+      /*  if (!file.exists())
+        {
+            file.createNewFile();
+
+        }
+*/
+
         Document xmlDOc = documentBuilder.parse(xmlFilePath);
         //read array of user elements
         NodeList personList = xmlDOc.getElementsByTagName("user");
