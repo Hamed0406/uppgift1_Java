@@ -30,21 +30,23 @@ public class AccountViewController {
 
 
     public void loadUser(ActionEvent event) throws FileNotFoundException {
-        File myObj = new File(String.valueOf(path));
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
+        File file = new File(String.valueOf(path));
+        Scanner reader = new Scanner(file);
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
             logonUser = data;
             System.out.println(data);
 
 
         }
 
-        myReader.close();
+        reader.close();
 
-        System.out.println(logonUser);
+     //   System.out.println(logonUser);
 
         lbLogonUser.setText(logonUser);
 
     }
+
+
 }
