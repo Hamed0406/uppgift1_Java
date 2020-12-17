@@ -121,13 +121,19 @@ public class SignUpFromController {
         if (!checkFile(userNameID))
             try {
                 File file = new File(path + userNameID + ".xml");
-                if (file.createNewFile())
+                if (file.createNewFile()) {
                     System.out.println(userNameID + "had been created");
-
+                    BankAccountController bankAccountController=new BankAccountController();
+                    bankAccountController.openAccount(userNameID);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
 
                 e.getCause();
+            } catch (TransformerException e) {
+                e.printStackTrace();
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
             }
     }
 
