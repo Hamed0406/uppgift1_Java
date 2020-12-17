@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uppgift5.controllers.AccountViewController">
    <children>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
@@ -23,12 +15,14 @@
                            <children>
                               <VBox alignment="CENTER" layoutX="208.0" layoutY="22.0" prefHeight="200.0" prefWidth="182.0" spacing="30.0">
                                  <children>
-                                    <TextField alignment="CENTER" promptText="Deposit">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
+                                    <TextField fx:id="txDeposit" alignment="CENTER" promptText="Deposit">
+                                        <font>
+                                            <Font size="18.0"/>
+                                        </font>
                                     </TextField>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="148.0" text="Deposit" textAlignment="CENTER" />
+                                     <Button fx:id="btnDeposit" alignment="CENTER" contentDisplay="CENTER"
+                                             mnemonicParsing="false" prefHeight="32.0" prefWidth="148.0" text="Deposit"
+                                             textAlignment="CENTER"/>
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="133.0" text="Balacne" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold Italic" size="12.0" />
@@ -38,12 +32,14 @@
                               </VBox>
                               <VBox alignment="CENTER" layoutX="25.0" layoutY="22.0" prefHeight="200.0" prefWidth="182.0" spacing="30.0">
                                  <children>
-                                    <TextField alignment="CENTER" promptText="withrow">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </TextField>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="148.0" text="withrow" textAlignment="CENTER" />
+                                     <TextField fx:id="txWithrow" alignment="CENTER" promptText="withrow">
+                                         <font>
+                                             <Font size="18.0"/>
+                                         </font>
+                                     </TextField>
+                                     <Button fx:id="btnWithrow" alignment="CENTER" contentDisplay="CENTER"
+                                             mnemonicParsing="false" prefHeight="32.0" prefWidth="148.0" text="withrow"
+                                             textAlignment="CENTER"/>
                                     <Label fx:id="lbLogonUser" alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="133.0" text="LOGIN AS" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold Italic" size="12.0" />
@@ -54,12 +50,20 @@
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Button fx:id="btnExt1" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="104.0" mnemonicParsing="false" onAction="#loadUser" prefHeight="32.0" prefWidth="134.0" text="Load User" textAlignment="CENTER" />
-                              <Button fx:id="btnExt" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="216.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="134.0" text="Exit" textAlignment="CENTER" />
-                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="164.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Change Password" textAlignment="CENTER" />
-                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="48.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Load Transactions" textAlignment="CENTER" />
-                           </children>
+                          <children>
+                              <Button fx:id="btnLoadUser" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0"
+                                      layoutY="104.0" mnemonicParsing="false" onAction="#loadUser" prefHeight="32.0"
+                                      prefWidth="134.0" text="Load User" textAlignment="CENTER"/>
+                              <Button fx:id="btnExt" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0"
+                                      layoutY="216.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="134.0"
+                                      text="Exit" textAlignment="CENTER"/>
+                              <Button fx:id="btnChangePassword" alignment="CENTER" contentDisplay="CENTER"
+                                      layoutX="28.0" layoutY="164.0" mnemonicParsing="false" prefHeight="32.0"
+                                      prefWidth="133.0" text="Change Password" textAlignment="CENTER"/>
+                              <Button fx:id="btnLoadTransaction" alignment="CENTER" contentDisplay="CENTER"
+                                      layoutX="27.0" layoutY="48.0" mnemonicParsing="false" prefHeight="32.0"
+                                      prefWidth="133.0" text="Load Transactions" textAlignment="CENTER"/>
+                          </children>
                         </AnchorPane>
                     </items>
                   </SplitPane>
@@ -67,12 +71,14 @@
             </AnchorPane>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="598.0">
                <children>
-                  <TableView layoutX="123.0" layoutY="4.0" prefHeight="118.4" prefWidth="598.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn prefWidth="277.59995728731155" text="Transactions" />
-                      <TableColumn prefWidth="308.800048828125" text="Date " />
-                    </columns>
-                  </TableView>
+                   <TableView fx:id="tableView" layoutX="123.0" layoutY="4.0" prefHeight="118.4" prefWidth="598.4"
+                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
+                       <columns>
+                           <TableColumn fx:id="transactionColumn" prefWidth="277.59995728731155" text="Transactions"/>
+                           <TableColumn fx:id="dateColumn" prefWidth="308.800048828125" text="Date "/>
+                       </columns>
+                   </TableView>
                </children>
             </AnchorPane>
         </items>

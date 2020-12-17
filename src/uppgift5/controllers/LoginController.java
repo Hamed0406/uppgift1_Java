@@ -19,7 +19,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -49,7 +48,6 @@ public class LoginController {
     @FXML
     private Label lbLoginMessage;
     public String searchUser;
-  //  public AccountViewController accountViewController = new AccountViewController();
     Path path = Path.of("src/uppgift5/Resources/TempUser.txt");
     public static final String xmlFilePath = "src\\uppgift5\\XMLUserDataBase.xml";
 XmlController xmlController=new XmlController();
@@ -151,7 +149,6 @@ XmlController xmlController=new XmlController();
         StreamResult streamResult = new StreamResult(new File(xmlFilePath));
         transformer.transform(domSource, streamResult);
 
-        // System.out.println("Done creating XML File");
 
     }
 

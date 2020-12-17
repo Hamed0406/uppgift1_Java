@@ -22,9 +22,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,24 +118,21 @@ public class SignUpFromController {
     public void fileCreator(String userNameID) throws IOException {
 
 
+        if (!checkFile(userNameID))
+            try {
+                File file = new File(path + userNameID + ".xml");
+                if (file.createNewFile())
+                    System.out.println(userNameID + "had been created");
 
+            } catch (IOException e) {
+                e.printStackTrace();
 
-            if(!checkFile(userNameID))
-                try {
-            File file = new File(path+userNameID+".xml");
-            if(file.createNewFile())
-                System.out.println(userNameID+"had been created");
-
-}catch(IOException e)
-{
-    e.printStackTrace();
-
-    e.getCause();
-}
+                e.getCause();
+            }
     }
 
     private Boolean checkFile(String checkUserID) {
-        File tmpDir = new File(path+checkUserID+".xml");
+        File tmpDir = new File(path + checkUserID + ".xml");
         boolean exists = tmpDir.exists();
         return exists;
     }
