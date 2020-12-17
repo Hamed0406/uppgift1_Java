@@ -62,7 +62,7 @@ public class XmlController {
 
     }
 
-    private Element setUser(int id, String firstName, String lastName, String userID, String password, String balance, Document xmlDoc) {
+    public Element setUser(int id, String firstName, String lastName, String userID, String password, String balance, Document xmlDoc) {
 
         Element newUser = xmlDoc.createElement("user");
         newUser.setAttribute("ID", String.valueOf(id));

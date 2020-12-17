@@ -122,7 +122,9 @@ public class SignUpFromController {
 
 
 
-        try {
+
+            if(!checkFile(userNameID))
+                try {
             File file = new File(path+userNameID+".xml");
             if(file.createNewFile())
                 System.out.println(userNameID+"had been created");
@@ -134,4 +136,11 @@ public class SignUpFromController {
     e.getCause();
 }
     }
+
+    private Boolean checkFile(String checkUserID) {
+        File tmpDir = new File(path+checkUserID+".xml");
+        boolean exists = tmpDir.exists();
+        return exists;
+    }
+
 }
