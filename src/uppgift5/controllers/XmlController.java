@@ -17,6 +17,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ import java.util.List;
 public class XmlController {
 
     public static final String xmlFilePath = "src\\uppgift5\\XMLUserDataBase.xml";
+
 
     public void writeUserToXMl(List<User> list) throws ParserConfigurationException, TransformerException {
 
@@ -166,8 +168,10 @@ public class XmlController {
             return validate = false;
 
 
-        if (matchedUser.equals(authenticationModel.getUserID()) && matchPassword.equals(authenticationModel.getPassword()))
+        if (matchedUser.equals(authenticationModel.getUserID()) && matchPassword.equals(authenticationModel.getPassword())) {
+
             validate = true;
+        }
 
 
         return validate;

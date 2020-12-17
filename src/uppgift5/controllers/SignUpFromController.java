@@ -1,6 +1,5 @@
 package uppgift5.controllers;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +20,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +37,7 @@ public class SignUpFromController {
     @FXML
     private Button btnTologin;
     public static final String xmlFilePath = "src\\uppgift5\\XMLUserDataBase.xml";
-    public List<User> list = FXCollections.observableArrayList();
+    public List<User> list=new ArrayList<>();
     //To load first to have all users .
     public XmlController xmlController = new XmlController();
     @FXML
@@ -47,6 +51,7 @@ public class SignUpFromController {
     @FXML
     private PasswordField txPassword;
 
+    String path =("src\\uppgift5\\Resources\\");
 
     public void setBtnTologin(ActionEvent event) throws IOException {
         Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
@@ -62,27 +67,21 @@ public class SignUpFromController {
         //get new user
 
         User user = new User(txFirstName.getText(), txLastName.getText(), txUserID.getText(), txPassword.getText(), "0");
+        //TODO creat xml file for a user
+        fileCreator(txUserID.getText());
+        loadfromXMl(list);
+        //clear fields
         txFirstName.clear();
         txLastName.clear();
         txUserID.clear();
         txPassword.clear();
-        if (list.isEmpty()) {
-            list.add(user);
-            xmlController.writeUserToXMl(list);
-
-
-        } else {
-            loadfromXMl(list);
-
-            list.add(user);
-        }
-        // System.out.println(list.get(0).getFirstName());
-        list.add(new User("first", "last", "userid", "pass", "0"));
-        xmlController.writeUserToXMl(list);
+        list.add(user);
+       xmlController.writeUserToXMl(list);
     }
 
     public void loadfromXMl(List<User> list) throws IOException, SAXException, ParserConfigurationException {
 
+        list.clear();
         String firstNameT = null;
         String lastNameT = null;
         String userIDT = null;
@@ -90,13 +89,7 @@ public class SignUpFromController {
         String balanceT = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        // File file = new File(xmlFilePath);
-      /*  if (!file.exists())
-        {
-            file.createNewFile();
 
-        }
-*/
 
         Document xmlDOc = documentBuilder.parse(xmlFilePath);
         //read array of user elements
@@ -123,5 +116,22 @@ public class SignUpFromController {
 
 
         }
+    }
+
+    public void fileCreator(String userNameID) throws IOException {
+
+
+
+        try {
+            File file = new File(path+userNameID+".xml");
+            if(file.createNewFile())
+                System.out.println(userNameID+"had been created");
+
+}catch(IOException e)
+{
+    e.printStackTrace();
+
+    e.getCause();
+}
     }
 }

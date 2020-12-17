@@ -13,7 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import uppgift5.models.AuthenticationModel;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 
 
 /**
@@ -35,7 +38,18 @@ public class LoginController {
     @FXML
     private Label lbLoginMessage;
     public String searchUser;
+    public AccountViewController accountViewController = new AccountViewController();
+    Path path = Path.of("src/uppgift5/Resources/TempUser.txt");
+
+    public String getSearchUser() {
+        return searchUser;
+    }
+
     public String searchPassword;
+
+    public void setSearchUser(String searchUser) {
+        this.searchUser = searchUser;
+    }
 
 
     public void setBtnExit(ActionEvent event) {
@@ -51,9 +65,10 @@ public class LoginController {
             searchPassword = txPass.getText();
             authenticationLogin.setPassword(searchPassword);
             authenticationLogin.setUserID(searchUser);
-            if (validateLogin(authenticationLogin))
+            if (validateLogin(authenticationLogin)) {
+                getValidatedUser(searchUser);
                 fromLoginToAccountView(event);
-            else
+            } else
                 lbLoginMessage.setText("Wrong UserID/Password!!!");
 
 
@@ -86,6 +101,7 @@ public class LoginController {
     }
 
     public void fromLoginToAccountView(ActionEvent event) throws IOException {
+
         Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/AccountView.fxml"));
         Scene formViewScene = new Scene(formViewParent);
 //Get stage Information
@@ -93,4 +109,20 @@ public class LoginController {
         window.setScene(formViewScene);
         window.show();
     }
+
+    public void getValidatedUser(String toRegister) throws IOException {
+
+
+        try {
+            File file = new File(String.valueOf(path));
+            if (file.createNewFile())
+                System.out.println("it is don");
+            FileWriter myWriter = new FileWriter(String.valueOf(path));
+            myWriter.write(toRegister);
+            myWriter.close();
+        } catch (IOException e) {
+            e.getCause();
+        }
+    }
+
 }
