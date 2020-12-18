@@ -7,7 +7,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -24,14 +27,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -51,19 +52,14 @@ public class AccountViewController implements Initializable {
     @FXML
     private Button btnExt;
     @FXML
-    private Button btnLodUs;
-    @FXML
     private TableView<TransactionModel> tableView;
     @FXML
     private TableColumn<TransactionModel, String> transactionColumn;
     @FXML
     private TableColumn<TransactionModel, String> dateColumn;
     @FXML
-    private Button btnChangePassword;
+    private  Button  btnChange;
     @FXML
-    private Button btnExit;
-    @FXML
-
     private Button btnDeposit;
     @FXML
     private Button btnWithrow;
@@ -72,12 +68,11 @@ public class AccountViewController implements Initializable {
     @FXML
     private TextField txWithrow;
     @FXML
-            private Label lbBalance;
+    private Label lbBalance;
     @FXML
-            private TextArea txMessage;
-
+    private TextArea txMessage;
     @FXML
-            private Label lblClock;
+    private Label lblClock;
 
 BankAccountController bankAccountController=new BankAccountController();
     public void loadUser() throws IOException, SAXException, ParserConfigurationException {
@@ -218,6 +213,19 @@ balanceCalculator();
 
         System.exit(0);
     }
+
+
+    public void towardChangePasswordView(ActionEvent event) throws IOException {
+        Parent changePassword = FXMLLoader.load(getClass().getResource("../views/ChangePasswordView.fxml"));
+       // Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
+
+        Scene changePasswordView = new Scene(changePassword);
+//Get stage Information
+        Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        window.setScene(changePasswordView);
+        window.show();
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

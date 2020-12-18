@@ -62,12 +62,12 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                           <children>
                               <Button fx:id="btnExt" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="168.0" mnemonicParsing="false" onAction="#setBtnExit" prefHeight="32.0" prefWidth="134.0" text="Exit" textAlignment="CENTER" />
-                              <Button fx:id="btnChangePassword" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="116.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Change Password" textAlignment="CENTER" />
                               <Label fx:id="lblClock" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="12.0" prefHeight="90.0" prefWidth="110.0" textAlignment="CENTER">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="btnChange" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="120.0" mnemonicParsing="false" onAction="#towardChangePasswordView" prefHeight="32.0" prefWidth="134.0" text="Change Password" textAlignment="CENTER" />
                           </children>
                         </AnchorPane>
                     </items>

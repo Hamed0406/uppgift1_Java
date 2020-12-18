@@ -52,6 +52,7 @@ public class SignUpFromController {
 
     public void setBtnTologin(ActionEvent event) throws IOException {
         Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
+
         Scene loginView = new Scene(loginParent);
 //Get stage Information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
