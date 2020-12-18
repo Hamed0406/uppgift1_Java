@@ -68,6 +68,8 @@ public class AccountViewController implements Initializable {
     private TextField txWithrow;
     @FXML
             private Label lbBalance;
+    @FXML
+            private TextArea txMessage;
 
 BankAccountController bankAccountController=new BankAccountController();
     public void loadUser() throws IOException, SAXException, ParserConfigurationException {
@@ -88,7 +90,7 @@ balanceCalculator();
 
         //   System.out.println(logonUser);
 
-        lbLogonUser.setText(logonUser);
+        lbLogonUser.setText("Login as : "+logonUser);
 
     }
 
@@ -127,6 +129,8 @@ balanceCalculator();
 
 
     public void deposit(ActionEvent event) throws TransformerException, ParserConfigurationException {
+        txMessage.clear();
+
         String tempDeposit=txDeposit.getText();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -135,6 +139,7 @@ balanceCalculator();
         //TODO update balance
         txDeposit.clear();
         bankAccountController.registerTransaction(list,logonUser);
+        txMessage.setText("Transaction complete,Thank you!");
         balanceCalculator();
 
 
@@ -142,21 +147,35 @@ balanceCalculator();
 
 
     public void withrow(ActionEvent event) throws TransformerException, ParserConfigurationException {
+        txMessage.clear();
+
         String tempWithrow=("-"+txWithrow.getText());
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String timeStamp = now.format(formatter);
-        int tempBalance=Integer.parseInt(balance);
-        //if(!(tempBalance<=0)) {   //check balance
+
+         int tempBalance= Integer.parseInt(tempWithrow);
+        for(int i=0;i<list.size();i++)
+        {
+           tempBalance= tempBalance+Integer.parseInt(list.get(i).getTransaction());
+        }
+
+        if(tempBalance>=0) {   //check balance
             list.add(new TransactionModel(tempWithrow, timeStamp));
             //TODO update balance
-     //   }
-        txDeposit.clear();
-        bankAccountController.registerTransaction(list,logonUser);
-        balanceCalculator();
+            txWithrow.clear();
+            bankAccountController.registerTransaction(list,logonUser);
+            balanceCalculator();
+      }else
+        {
+           txMessage.setText("You dont have enough money !!");
+           txWithrow.clear();
+        }
+
 
 
     }
+
 
 
     public void balanceCalculator()
@@ -170,7 +189,7 @@ balanceCalculator();
           amount=amount+Integer.parseInt(list.get(i).getTransaction()) ;
       }
       balance= String.valueOf(amount);
-      lbBalance.setText(balance);
+      lbBalance.setText("Your Balance : "+balance);
     }
 
 
