@@ -1,5 +1,8 @@
 package uppgift5.controllers;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -55,10 +61,9 @@ public class AccountViewController implements Initializable {
     @FXML
     private Button btnChangePassword;
     @FXML
-    private Button btnLoadUser;
+    private Button btnExit;
     @FXML
-    private Button btnLoadTransaction;
-    @FXML
+
     private Button btnDeposit;
     @FXML
     private Button btnWithrow;
@@ -70,6 +75,9 @@ public class AccountViewController implements Initializable {
             private Label lbBalance;
     @FXML
             private TextArea txMessage;
+
+    @FXML
+            private Label lblClock;
 
 BankAccountController bankAccountController=new BankAccountController();
     public void loadUser() throws IOException, SAXException, ParserConfigurationException {
@@ -192,13 +200,31 @@ balanceCalculator();
       lbBalance.setText("Your Balance : "+balance);
     }
 
+    public void digitalClock() {
 
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            LocalTime currentTime = LocalTime.now();
+            lblClock.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+    }
+
+
+    public void setBtnExit(ActionEvent event) {
+
+
+        System.exit(0);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         transactionColumn.setCellValueFactory(new PropertyValueFactory<>("transaction"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         tableView.setItems(list);
+        digitalClock();
         try {
             loadUser();
         } catch (IOException e) {

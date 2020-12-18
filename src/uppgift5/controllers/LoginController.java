@@ -107,7 +107,7 @@ XmlController xmlController=new XmlController();
       if(  !checkFile())
       {
           creatXMLAndAdmin();
-          System.out.println("files is ncreated ");
+          System.out.println("DataBse had been created. ");
       }
         Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/SignUpFormView.fxml"));
         Scene formViewScene = new Scene(formViewParent);
