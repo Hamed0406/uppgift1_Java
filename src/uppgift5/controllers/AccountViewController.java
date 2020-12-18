@@ -12,7 +12,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import uppgift4.models.Person;
 import uppgift5.models.TransactionModel;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -26,6 +25,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -66,9 +66,11 @@ public class AccountViewController implements Initializable {
     private TextField txDeposit;
     @FXML
     private TextField txWithrow;
+    @FXML
+            private Label lbBalance;
 
 BankAccountController bankAccountController=new BankAccountController();
-    public void loadUser(ActionEvent event) throws IOException, SAXException, ParserConfigurationException {
+    public void loadUser() throws IOException, SAXException, ParserConfigurationException {
         File file = new File(String.valueOf(path));
         Scanner reader = new Scanner(file);
         while (reader.hasNextLine()) {
@@ -76,6 +78,7 @@ BankAccountController bankAccountController=new BankAccountController();
             logonUser = data;
             //TODO load userdata from XML and add to table.
 loaderXML(logonUser);
+balanceCalculator();
          //   System.out.println(data);
 
 
@@ -132,6 +135,8 @@ loaderXML(logonUser);
         //TODO update balance
         txDeposit.clear();
         bankAccountController.registerTransaction(list,logonUser);
+        balanceCalculator();
+
 
     }
 
@@ -148,8 +153,26 @@ loaderXML(logonUser);
      //   }
         txDeposit.clear();
         bankAccountController.registerTransaction(list,logonUser);
+        balanceCalculator();
+
 
     }
+
+
+    public void balanceCalculator()
+    {
+        //TODO balance calculator
+      int size=  list.size();
+      int amount=Integer.parseInt(balance);
+      amount=0;
+      for(int i=0;i<size;i++)
+      {
+          amount=amount+Integer.parseInt(list.get(i).getTransaction()) ;
+      }
+      balance= String.valueOf(amount);
+      lbBalance.setText(balance);
+    }
+
 
 
     @Override
@@ -157,5 +180,16 @@ loaderXML(logonUser);
         transactionColumn.setCellValueFactory(new PropertyValueFactory<>("transaction"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         tableView.setItems(list);
+        try {
+            loadUser();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
