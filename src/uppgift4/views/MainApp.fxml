@@ -201,6 +201,6 @@
                     </children>
                 </AnchorPane>
             </items>
-      </SplitPane>
-   </children>
+        </SplitPane>
+    </children>
 </AnchorPane>

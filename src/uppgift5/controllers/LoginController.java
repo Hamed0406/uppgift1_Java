@@ -47,6 +47,7 @@ public class LoginController {
     private PasswordField txPass;
     @FXML
     private Label lbLoginMessage;
+
     public String searchUser;
     Path path = Path.of("src/uppgift5/Resources/TempUser.txt");
     public static final String xmlFilePath = "src\\uppgift5\\XMLUserDataBase.xml";
@@ -161,4 +162,5 @@ public class LoginController {
             e.getCause();
         }
     }
+
 }

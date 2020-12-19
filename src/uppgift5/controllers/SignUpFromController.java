@@ -50,12 +50,14 @@ public class SignUpFromController {
     private PasswordField txPassword;
     @FXML
     private Label lbSignUpMessage;
-    String path =("src\\uppgift5\\Resources\\");
+    String path = ("src\\uppgift5\\Resources\\");
+    @FXML
+    private Label lbDataMessage;
 
     public void setBtnTologin(ActionEvent event) throws IOException {
         Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
         Scene loginView = new Scene(loginParent);
-    //Get stage Information
+        //Get stage Information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginView);
         window.show();
@@ -73,18 +75,30 @@ public class SignUpFromController {
             txUserID.clear();
         }
         else {
-            User user = new User(firstName, lastName, userID, password);
-            //creat xml file for a user
-            fileCreator(userID);
-            loadfromXMl(list);
-            //clear fields
-            txFirstName.clear();
-            txLastName.clear();
-            txUserID.clear();
-            txPassword.clear();
-            lbSignUpMessage.setText("");
-            list.add(user);
-            xmlController.writeUserToXMl(list);
+            if (stringChecker(firstName) && stringChecker(lastName)) {
+                //Check if all fields are filed up
+                if ((firstName.isBlank() || firstName.isEmpty()) || (lastName.isEmpty() || lastName.isBlank()) || (userID.isEmpty() || userID.isBlank()) || (password.isBlank() || password.isEmpty())) {
+                    lbDataMessage.setText("PLease fill up all fields!!");
+                } else {
+                    User user = new User(firstName, lastName, userID, password);
+                    //creat xml file for a user
+                    fileCreator(userID);
+                    loadfromXMl(list);
+                    //clear fields
+                    txFirstName.clear();
+                    txLastName.clear();
+                    txUserID.clear();
+                    txPassword.clear();
+                    lbSignUpMessage.setText("");
+                    lbDataMessage.setText("");
+                    list.add(user);
+                    xmlController.writeUserToXMl(list);
+                }
+            } else {
+                lbDataMessage.setText("Please enter Just alphabet as first and last name!");
+                txFirstName.clear();
+                txLastName.clear();
+            }
         }
     }
 
@@ -144,6 +158,20 @@ public class SignUpFromController {
         File tmpDir = new File(path + checkUserID + ".xml");
         boolean exists = tmpDir.exists();
         return exists;
+    }
+
+    public Boolean stringChecker(String str) {
+//To check if String contain  just alphabet.
+        str = str.toLowerCase();
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char ch = charArray[i];
+            if (!(ch >= 'a' && ch <= 'z')) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 }

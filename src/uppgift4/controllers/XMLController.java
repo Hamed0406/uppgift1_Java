@@ -29,7 +29,6 @@ public class XMLController {
     public void writePersonToXMl(List<Person> list) throws ParserConfigurationException, TransformerException {
 
 
-
         // creat DocumentBuilder
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -54,15 +53,15 @@ public class XMLController {
         StreamResult streamResult = new StreamResult(new File(xmlFilePath));
         transformer.transform(domSource, streamResult);
 
-       // System.out.println("Done creating XML File");
+        // System.out.println("Done creating XML File");
 
 
     }
 
-    private Element setPerson(int id,String firstName, String lastName, String age, Document xmlDoc) {
+    private Element setPerson(int id, String firstName, String lastName, String age, Document xmlDoc) {
 
         Element newPerson = xmlDoc.createElement("person");
-        newPerson.setAttribute("ID",String.valueOf(id));
+        newPerson.setAttribute("ID", String.valueOf(id));
 
         Text firstNameText = xmlDoc.createTextNode(firstName);
         Element firstNameElement = xmlDoc.createElement("firstName");

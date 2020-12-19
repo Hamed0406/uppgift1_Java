@@ -9,8 +9,6 @@ import javafx.beans.property.SimpleStringProperty;
  */
 
 
-
-
 public class Person {
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;

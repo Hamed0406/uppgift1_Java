@@ -32,7 +32,9 @@ import java.util.ResourceBundle;
  * 12/6/2020
  */
 public class MainController implements Initializable {
+    public static final String xmlFilePath = "src\\uppgift4\\XMLDataBase.xml";
     public ObservableList<Person> list = FXCollections.observableArrayList();// TODO Load XML files and ADD to Table view.
+    public XMLController xmlController = new XMLController();
     @FXML
     private TableView<Person> tableView;
     @FXML
@@ -60,8 +62,6 @@ public class MainController implements Initializable {
     private String firstName;
     private String lastName;
     private String age;
-    public static final String xmlFilePath = "src\\uppgift4\\XMLDataBase.xml";
-    public XMLController xmlController = new XMLController();
 
     //Add Functionality a persson to Table view
     public void addToTable(ActionEvent event) throws TransformerException, ParserConfigurationException {
@@ -169,7 +169,7 @@ public class MainController implements Initializable {
 
 
         }
-     //   System.out.println("Reade XML");
+        //   System.out.println("Reade XML");
     }
 
 

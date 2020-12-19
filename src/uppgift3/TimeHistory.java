@@ -22,13 +22,12 @@ public class TimeHistory {
         return timeStampData.get();
     }
 
+    public void setTimeStampData(String timeStampData) {
+        this.timeStampData.set(timeStampData);
+    }
 
     public String getLastTimeData() {
         return lastTimeData.get();
-    }
-
-    public void setTimeStampData(String timeStampData) {
-        this.timeStampData.set(timeStampData);
     }
 
     public void setLastTimeData(String lastTimeData) {
