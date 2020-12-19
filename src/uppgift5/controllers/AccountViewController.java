@@ -178,7 +178,7 @@ public void loadUser() throws IOException, SAXException, ParserConfigurationExce
       int size=  list.size();
       int amount=Integer.parseInt(balance);
       amount=0;
-      for(int i=0;i<size;i++)
+      for(int i=0;i<list.size();i++)
       {
           amount=amount+Integer.parseInt(list.get(i).getTransaction()) ;
       }

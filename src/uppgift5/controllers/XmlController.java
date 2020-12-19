@@ -88,7 +88,7 @@ public class XmlController {
         return newUser;
     }
 
-    private static boolean checkIfNodeExists(Document document, String xpathExpression) throws Exception {
+    public  boolean checkIfNodeExists(Document document, String xpathExpression) throws Exception {
         boolean matches = false;
         // Create XPathFactory object
         XPathFactory xpathFactory = XPathFactory.newInstance();
@@ -204,6 +204,10 @@ public class XmlController {
         writeUserToXMl(list);
 
     }
+
+
+
+
 }
 
 

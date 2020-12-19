@@ -63,7 +63,7 @@ public class LoginController {
         AuthenticationModel authenticationLogin = new AuthenticationModel();
         if (txUserID.getText().isBlank() == false && txPass.getText().isBlank() == false) {
             //Check entry of user .
-            searchUser = txUserID.getText();
+            searchUser = txUserID.getText().toLowerCase();
             searchPassword = txPass.getText();
             authenticationLogin.setPassword(searchPassword);
             authenticationLogin.setUserID(searchUser);

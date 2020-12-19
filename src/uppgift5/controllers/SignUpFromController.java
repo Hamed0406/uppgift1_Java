@@ -61,20 +61,31 @@ public class SignUpFromController {
         window.show();
     }
 
-    public void signUpUser(ActionEvent event) throws ParserConfigurationException, TransformerException, SAXException, IOException {
+    public void signUpUser(ActionEvent event) throws Exception {
 
 //Load all user in list and add new user .
-        User user = new User(txFirstName.getText(), txLastName.getText(), txUserID.getText(), txPassword.getText());
-        //TODO creat xml file for a user
-        fileCreator(txUserID.getText());
-        loadfromXMl(list);
-        //clear fields
-        txFirstName.clear();
-        txLastName.clear();
-        txUserID.clear();
-        txPassword.clear();
-        list.add(user);
-       xmlController.writeUserToXMl(list);
+        String firstName=txFirstName.getText().toLowerCase();
+        String lastName=txLastName.getText().toLowerCase();
+        String userID=txUserID.getText().toLowerCase();
+        String password=txPassword.getText();
+        if(checkFile(userID)) {
+            lbSignUpMessage.setText("UserID already taken!!");
+            txUserID.clear();
+        }
+        else {
+            User user = new User(firstName, lastName, userID, password);
+            //creat xml file for a user
+            fileCreator(userID);
+            loadfromXMl(list);
+            //clear fields
+            txFirstName.clear();
+            txLastName.clear();
+            txUserID.clear();
+            txPassword.clear();
+            lbSignUpMessage.setText("");
+            list.add(user);
+            xmlController.writeUserToXMl(list);
+        }
     }
 
     public void loadfromXMl(List<User> list) throws IOException, SAXException, ParserConfigurationException {
@@ -84,7 +95,6 @@ public class SignUpFromController {
         String lastNameT = null;
         String userIDT = null;
         String paswordT = null;
-        String balanceT = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         Document xmlDOc = documentBuilder.parse(xmlFilePath);
@@ -100,7 +110,6 @@ public class SignUpFromController {
                 lastNameT = user.getElementsByTagName("lastName").item(0).getTextContent();
                 userIDT = user.getElementsByTagName("userID").item(0).getTextContent();
                 paswordT = user.getElementsByTagName("password").item(0).getTextContent();
-                balanceT = user.getElementsByTagName("balance").item(0).getTextContent();
                 User tempU = new User(firstNameT, lastNameT, userIDT, paswordT);
                 list.add(tempU);
 
