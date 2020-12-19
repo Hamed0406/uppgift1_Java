@@ -124,17 +124,21 @@ public void loadUser() throws IOException, SAXException, ParserConfigurationExce
     //Deposit functionality
     public void deposit(ActionEvent event) throws TransformerException, ParserConfigurationException {
         txMessage.clear();
-        String tempDeposit=txDeposit.getText();
+        String tempDeposit = txDeposit.getText();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String timeStamp = now.format(formatter);
-        list.add(new TransactionModel(tempDeposit,timeStamp));
-        txDeposit.clear();
-        //Register Transaction in userID.xml file.
-        bankAccountController.registerTransaction(list,logonUser);
-        txMessage.setText("Transaction complete,Thank you!");
-        //update balance
-        balanceCalculator();
+        if (tempDeposit.isEmpty() || tempDeposit.isBlank() || tempDeposit.equals("0")) {
+            txMessage.setText("Please enter valid amount!");
+        } else {
+            list.add(new TransactionModel(tempDeposit, timeStamp));
+            txDeposit.clear();
+            //Register Transaction in userID.xml file.
+            bankAccountController.registerTransaction(list, logonUser);
+            txMessage.setText("Transaction complete,Thank you!");
+            //update balance
+            balanceCalculator();
+        }
 
 
     }
@@ -142,28 +146,33 @@ public void loadUser() throws IOException, SAXException, ParserConfigurationExce
     //withdrew functionality .
     public void withrow(ActionEvent event) throws TransformerException, ParserConfigurationException {
         txMessage.clear();
-        //Make - sign
-        String tempWithrow=("-"+txWithrow.getText());
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String timeStamp = now.format(formatter);
-//Check if withdraw transaction is acceptable . it is acceptable if user have enough money in account .
-         int tempBalance= Integer.parseInt(tempWithrow);
-        for(int i=0;i<list.size();i++)
-        {
-           tempBalance= tempBalance+Integer.parseInt(list.get(i).getTransaction());
-        }
+        String check = txWithrow.getText();
+        if (check.isEmpty() || check.isBlank() || check.equals("0")) {
+            txMessage.setText("Please enter valid amount!");
+        } else {
+            //Make - sign
+            String tempWithrow = ("-" + check);
 
-        if(tempBalance>=0) {   //check balance
-            list.add(new TransactionModel(tempWithrow, timeStamp));
-            // update balance
-            txWithrow.clear();
-            bankAccountController.registerTransaction(list,logonUser);
-            balanceCalculator();
-      }else
-        {
-           txMessage.setText("You dont have enough money !!");
-           txWithrow.clear();
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String timeStamp = now.format(formatter);
+//Check if withdraw transaction is acceptable . it is acceptable if user have enough money in account .
+            int tempBalance = Integer.parseInt(tempWithrow);
+            for (int i = 0; i < list.size(); i++) {
+                tempBalance = tempBalance + Integer.parseInt(list.get(i).getTransaction());
+            }
+
+            if (tempBalance >= 0) {   //check balance
+                list.add(new TransactionModel(tempWithrow, timeStamp));
+                // update balance
+                txWithrow.clear();
+                bankAccountController.registerTransaction(list, logonUser);
+                balanceCalculator();
+            } else {
+                txMessage.setText("You dont have enough money !!");
+                txWithrow.clear();
+            }
+
         }
 
 

@@ -3,6 +3,7 @@ package uppgift5.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,7 +27,9 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
+import java.util.ResourceBundle;
 
 
 /**
@@ -34,7 +37,7 @@ import java.nio.file.Path;
  * h.adeli.meadeli@gmail.com
  * 12/12/2020
  */
-public class LoginController {
+public class LoginController implements Initializable {
     @FXML
     private Button btnLogin;
     @FXML
@@ -90,12 +93,13 @@ public class LoginController {
     }
 
     public void fromLoginToSignUpForm(ActionEvent event) throws IOException, TransformerException, ParserConfigurationException {
+
+
         // check if XMLUserDataBase.xml exists if is not creat with admin.Admin is first User in Database with Id=0.
-      if(  !checkFile())
-      {
-          creatXMLAndAdmin();
-          System.out.println("This is first Time you are using the app.DataBse had been created. ");
-      }
+        if (!checkFile()) {
+            creatXMLAndAdmin();
+            System.out.println("This is first Time you are using the app.DataBse had been created. ");
+        }
         Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/SignUpFormView.fxml"));
         Scene formViewScene = new Scene(formViewParent);
         //Get stage Information
@@ -163,4 +167,30 @@ public class LoginController {
         }
     }
 
+    private Boolean checkDir() {
+        String directoryPath = "src/uppgift5/Resources/";
+        File file = new File(directoryPath);
+
+        if (file.isDirectory()) {
+            return true;
+        } else {
+
+            System.out.println(" Resources Directory doesn't exist!!");
+            //Creating the directory
+            boolean bool = file.mkdir();
+            if (bool) {
+                System.out.println(" Resources Directory created successfully");
+                return checkFile();
+            } else {
+                System.out.println("Sorry couldn’t create the Resources directory");
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        checkDir();
+    }
 }
