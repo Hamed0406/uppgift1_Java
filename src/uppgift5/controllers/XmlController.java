@@ -44,7 +44,7 @@ public class XmlController {
         Element rootElement = xmlDoc.createElement("users");
         Element mainElement = xmlDoc.createElement("user");
         for (int i = 0; i < list.size(); i++) {
-            rootElement.appendChild(setUser(i, list.get(i).getFirstName(), list.get(i).getLastName(), list.get(i).getUserID(), list.get(i).getPassword(), list.get(i).getBalance(), xmlDoc));//Append new person
+            rootElement.appendChild(setUser(i, list.get(i).getFirstName(), list.get(i).getLastName(), list.get(i).getUserID(), list.get(i).getPassword(), xmlDoc));//Append new person
         }
         xmlDoc.appendChild(rootElement);
 
@@ -64,7 +64,7 @@ public class XmlController {
 
     }
 
-    public Element setUser(int id, String firstName, String lastName, String userID, String password, String balance, Document xmlDoc) {
+    public Element setUser(int id, String firstName, String lastName, String userID, String password, Document xmlDoc) {
 
         Element newUser = xmlDoc.createElement("user");
         newUser.setAttribute("ID", String.valueOf(id));
@@ -80,14 +80,11 @@ public class XmlController {
         Text passwordText = xmlDoc.createTextNode(password);
         Element passwordElement = xmlDoc.createElement("password");
         passwordElement.appendChild(passwordText);
-        Text balanceText = xmlDoc.createTextNode(balance);
-        Element balanceElement = xmlDoc.createElement("balance");
-        balanceElement.appendChild(balanceText);
+
         newUser.appendChild(firstNameElement);
         newUser.appendChild(lastNameElement);
         newUser.appendChild(userIDElement);
         newUser.appendChild(passwordElement);
-        newUser.appendChild(balanceElement);
         return newUser;
     }
 
@@ -186,10 +183,9 @@ public class XmlController {
                 lastNameT = user.getElementsByTagName("lastName").item(0).getTextContent();
                 userIDT = user.getElementsByTagName("userID").item(0).getTextContent();
                 paswordT = user.getElementsByTagName("password").item(0).getTextContent();
-                balanceT = user.getElementsByTagName("balance").item(0).getTextContent();
 
 
-                User tempU = new User(firstNameT, lastNameT, userIDT, paswordT, balanceT);
+                User tempU = new User(firstNameT, lastNameT, userIDT, paswordT);
                 list.add(tempU);
 
             }
@@ -201,7 +197,7 @@ public class XmlController {
             String tempUserID = list.get(i).getUserID();
             String tempPass = list.get(i).getPassword();
             if (tempUserID.equals(data)) {
-                User tempU = new User(list.get(i).getFirstName(), list.get(i).getLastName(), list.get(i).getUserID(), newPassword, "0");
+                User tempU = new User(list.get(i).getFirstName(), list.get(i).getLastName(), list.get(i).getUserID(), newPassword);
                 list.set(i, tempU);
             }
         }

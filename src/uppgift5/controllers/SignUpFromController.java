@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -47,6 +48,8 @@ public class SignUpFromController {
     private TextField txUserID;
     @FXML
     private PasswordField txPassword;
+    @FXML
+    private Label lbSignUpMessage;
     String path =("src\\uppgift5\\Resources\\");
 
     public void setBtnTologin(ActionEvent event) throws IOException {
@@ -61,7 +64,7 @@ public class SignUpFromController {
     public void signUpUser(ActionEvent event) throws ParserConfigurationException, TransformerException, SAXException, IOException {
 
 //Load all user in list and add new user .
-        User user = new User(txFirstName.getText(), txLastName.getText(), txUserID.getText(), txPassword.getText(), "0");
+        User user = new User(txFirstName.getText(), txLastName.getText(), txUserID.getText(), txPassword.getText());
         //TODO creat xml file for a user
         fileCreator(txUserID.getText());
         loadfromXMl(list);
@@ -98,7 +101,7 @@ public class SignUpFromController {
                 userIDT = user.getElementsByTagName("userID").item(0).getTextContent();
                 paswordT = user.getElementsByTagName("password").item(0).getTextContent();
                 balanceT = user.getElementsByTagName("balance").item(0).getTextContent();
-                User tempU = new User(firstNameT, lastNameT, userIDT, paswordT, balanceT);
+                User tempU = new User(firstNameT, lastNameT, userIDT, paswordT);
                 list.add(tempU);
 
             }

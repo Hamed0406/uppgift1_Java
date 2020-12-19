@@ -122,7 +122,7 @@ public class LoginController {
         Element mainElement = xmlDoc.createElement("user");
 
 
-        rootElement.appendChild(xmlController.setUser(0,"Admin","Admin","Admin","Admin","0",xmlDoc));
+        rootElement.appendChild(xmlController.setUser(0,"Admin","Admin","Admin","Admin",xmlDoc));
 
         xmlDoc.appendChild(rootElement);
 

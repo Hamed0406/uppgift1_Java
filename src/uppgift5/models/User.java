@@ -10,18 +10,16 @@ public class User {
     private String lastName;
     private String userID;
     private String password;
-    private String balance;
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String userID, String password, String balance) {
+    public User(String firstName, String lastName, String userID, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userID = userID;
         this.password = password;
-        this.balance = balance;
     }
 
     public String getFirstName() {
@@ -56,11 +54,5 @@ public class User {
         this.password = password;
     }
 
-    public String getBalance() {
-        return balance;
-    }
 
-    public void setBalance(String balance) {
-        this.balance = balance;
-    }
 }
