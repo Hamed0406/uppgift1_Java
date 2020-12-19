@@ -50,42 +50,33 @@ public class LoginController {
     public String searchUser;
     Path path = Path.of("src/uppgift5/Resources/TempUser.txt");
     public static final String xmlFilePath = "src\\uppgift5\\XMLUserDataBase.xml";
-XmlController xmlController=new XmlController();
-
-    public String getSearchUser() {
-        return searchUser;
-    }
-
+    XmlController xmlController = new XmlController();
     public String searchPassword;
 
-    public void setSearchUser(String searchUser) {
-        this.searchUser = searchUser;
-    }
-
-
     public void setBtnExit(ActionEvent event) {
+        //Exit function.
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }
 
     public void login(ActionEvent event) throws Exception {
-
         AuthenticationModel authenticationLogin = new AuthenticationModel();
         if (txUserID.getText().isBlank() == false && txPass.getText().isBlank() == false) {
+            //Check entry of user .
             searchUser = txUserID.getText();
             searchPassword = txPass.getText();
             authenticationLogin.setPassword(searchPassword);
             authenticationLogin.setUserID(searchUser);
+            //userID and password match.
             if (validateLogin(authenticationLogin)) {
+                //userID and password match.
                 getValidatedUser(searchUser);
+                //Redirect toward accountView.
                 fromLoginToAccountView(event);
             } else
                 lbLoginMessage.setText("Wrong UserID/Password!!!");
-
-
         } else {
             lbLoginMessage.setText("Please enter User ID  or Password !!!");
-
         }
     }
 
@@ -95,35 +86,32 @@ XmlController xmlController=new XmlController();
         validated = xmlController.searchUser(login);
 
         return validated;
-//TODO get result from XML file
-        //Validate from input and go to next page
-
-
     }
 
     public void fromLoginToSignUpForm(ActionEvent event) throws IOException, TransformerException, ParserConfigurationException {
-//TODO change Scene to SignUP from.
-        //TODO check if XMLUserDataBase.xml exists if is not creat with admin.
+        // check if XMLUserDataBase.xml exists if is not creat with admin.Admin is first User in Database with Id=0.
       if(  !checkFile())
       {
           creatXMLAndAdmin();
-          System.out.println("DataBse had been created. ");
+          System.out.println("This is first Time you are using the app.DataBse had been created. ");
       }
         Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/SignUpFormView.fxml"));
         Scene formViewScene = new Scene(formViewParent);
-//Get stage Information
+        //Get stage Information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(formViewScene);
         window.show();
     }
 
     private Boolean checkFile() {
+        //To check if XMLUserDatabase.xml is exist .
         File tmpDir = new File(xmlFilePath);
         boolean exists = tmpDir.exists();
         return exists;
     }
 
     public void creatXMLAndAdmin() throws ParserConfigurationException, TransformerException {
+        //Creat Admin Node in XML file.
         // creat DocumentBuilder
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -148,27 +136,24 @@ XmlController xmlController=new XmlController();
         DOMSource domSource = new DOMSource(xmlDoc);
         StreamResult streamResult = new StreamResult(new File(xmlFilePath));
         transformer.transform(domSource, streamResult);
-
-
     }
 
     public void fromLoginToAccountView(ActionEvent event) throws IOException {
 
         Parent formViewParent = FXMLLoader.load(getClass().getResource("../views/AccountView.fxml"));
         Scene formViewScene = new Scene(formViewParent);
-//Get stage Information
+        //Get stage Information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(formViewScene);
         window.show();
     }
 
     public void getValidatedUser(String toRegister) throws IOException {
-
-
+        //Save validated userID in txt file.
         try {
             File file = new File(String.valueOf(path));
             if (file.createNewFile())
-                System.out.println("Data had been Transferred ");
+                System.out.println("Data had been Transferred to another Stage with help of tempUser.txt file ");
             FileWriter myWriter = new FileWriter(String.valueOf(path));
             myWriter.write(toRegister);
             myWriter.close();
@@ -176,5 +161,4 @@ XmlController xmlController=new XmlController();
             e.getCause();
         }
     }
-
 }

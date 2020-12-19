@@ -27,7 +27,6 @@ public class MainBankATM extends Application {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             primaryStage.setTitle("Welcome to ATM With JavaFX");
-
             primaryStage.setScene(scene);
             primaryStage.show();
 

@@ -25,10 +25,8 @@ import java.util.List;
  */
 public class BankAccountController {
     public     String xmlFilePath =("src\\uppgift5\\Resources\\");//To load from
-
+//Register transaction on xmlfile .
     public void registerTransaction(List<TransactionModel> list,String bankAccount) throws ParserConfigurationException, TransformerException {
-
-
         // creat DocumentBuilder
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -41,7 +39,6 @@ public class BankAccountController {
             rootElement.appendChild(setTransaction(i, list.get(i).getTransaction(), list.get(i).getDate(), xmlDoc));//Append new transaction
         }
         xmlDoc.appendChild(rootElement);
-
         //Set output format
         //Declare the  file
         //Declare the fileOutPutStream
@@ -52,32 +49,25 @@ public class BankAccountController {
         DOMSource domSource = new DOMSource(xmlDoc);
         StreamResult streamResult = new StreamResult(new File(xmlFilePath+bankAccount+".xml"));
         transformer.transform(domSource, streamResult);
-
-        // System.out.println("Done creating XML File");
-
-
     }
 
     private Element setTransaction(int id, String transaction, String date,  Document xmlDoc) {
 
         Element newTransaction = xmlDoc.createElement("transaction");
         newTransaction.setAttribute("ID", String.valueOf(id));
-
         Text transactionNameText = xmlDoc.createTextNode(transaction);
         Element transactionNameElement = xmlDoc.createElement("transactionType");
         transactionNameElement.appendChild(transactionNameText);
-
         Text dateText = xmlDoc.createTextNode(date);
         Element dateElement = xmlDoc.createElement("date");
         dateElement.appendChild(dateText);
-
         newTransaction.appendChild(transactionNameElement);
         newTransaction.appendChild(dateElement);
-
         return newTransaction;
     }
 
     public void openAccount(String userNameID) throws ParserConfigurationException, TransformerException {
+        //Crate userID.xml file when new user will register.
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         //Document
@@ -90,7 +80,6 @@ public class BankAccountController {
         String timeStamp = now.format(formatter);
         rootElement.appendChild(setTransaction(0, "0", timeStamp, xmlDoc));
         xmlDoc.appendChild(rootElement);
-
         //Set output format
         //Declare the  file
         //Declare the fileOutPutStream
@@ -101,7 +90,6 @@ public class BankAccountController {
         DOMSource domSource = new DOMSource(xmlDoc);
         StreamResult streamResult = new StreamResult(new File(xmlFilePath+userNameID+".xml"));
         transformer.transform(domSource, streamResult);
-
     }
 }
 

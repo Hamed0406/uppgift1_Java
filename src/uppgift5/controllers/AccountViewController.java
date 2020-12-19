@@ -75,30 +75,23 @@ public class AccountViewController implements Initializable {
     private Label lblClock;
 
 BankAccountController bankAccountController=new BankAccountController();
-    public void loadUser() throws IOException, SAXException, ParserConfigurationException {
-        File file = new File(String.valueOf(path));
-        Scanner reader = new Scanner(file);
-        while (reader.hasNextLine()) {
-            String data = reader.nextLine();
-            logonUser = data;
-            //TODO load userdata from XML and add to table.
-loaderXML(logonUser);
-balanceCalculator();
-         //   System.out.println(data);
-
-
-        }
-
-        reader.close();
-
-        //   System.out.println(logonUser);
-
-        lbLogonUser.setText("Login as : "+logonUser);
-
+//Load userID from TempUser.txt
+public void loadUser() throws IOException, SAXException, ParserConfigurationException {
+    File file = new File(String.valueOf(path));
+    Scanner reader = new Scanner(file);
+    while (reader.hasNextLine()) {
+        String data = reader.nextLine();
+        logonUser = data;
+        //load userdata from XML and add to table.
+        loaderXML(logonUser);
+        balanceCalculator();
     }
+    reader.close();
+    lbLogonUser.setText("Login as : " + logonUser);
+}
 
     private void loaderXML(String logonUserXML) throws ParserConfigurationException, IOException, SAXException {
-
+//Load UserID.xml file
         list.clear();
         String transactionT = null;
         String dateT = null;
@@ -106,8 +99,6 @@ balanceCalculator();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         Document xmlDOc = documentBuilder.parse(xmlFilePath+logonUserXML+".xml");
         NodeList transactionList = xmlDOc.getElementsByTagName("transaction");
-
-
         for (int i = 0; i < transactionList.getLength(); i++) {
             Node p = transactionList.item(i);
             if (p.getNodeType() == Node.ELEMENT_NODE) {
@@ -130,33 +121,33 @@ balanceCalculator();
 
     }
 
-
+    //Deposit functionality
     public void deposit(ActionEvent event) throws TransformerException, ParserConfigurationException {
         txMessage.clear();
-
         String tempDeposit=txDeposit.getText();
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String timeStamp = now.format(formatter);
         list.add(new TransactionModel(tempDeposit,timeStamp));
-        //TODO update balance
         txDeposit.clear();
+        //Register Transaction in userID.xml file.
         bankAccountController.registerTransaction(list,logonUser);
         txMessage.setText("Transaction complete,Thank you!");
+        //update balance
         balanceCalculator();
 
 
     }
 
-
+    //withdrew functionality .
     public void withrow(ActionEvent event) throws TransformerException, ParserConfigurationException {
         txMessage.clear();
-
+        //Make - sign
         String tempWithrow=("-"+txWithrow.getText());
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String timeStamp = now.format(formatter);
-
+//Check if withdraw transaction is acceptable . it is acceptable if user have enough money in account .
          int tempBalance= Integer.parseInt(tempWithrow);
         for(int i=0;i<list.size();i++)
         {
@@ -165,7 +156,7 @@ balanceCalculator();
 
         if(tempBalance>=0) {   //check balance
             list.add(new TransactionModel(tempWithrow, timeStamp));
-            //TODO update balance
+            // update balance
             txWithrow.clear();
             bankAccountController.registerTransaction(list,logonUser);
             balanceCalculator();
@@ -183,7 +174,7 @@ balanceCalculator();
 
     public void balanceCalculator()
     {
-        //TODO balance calculator
+        // balance calculator
       int size=  list.size();
       int amount=Integer.parseInt(balance);
       amount=0;
@@ -196,7 +187,7 @@ balanceCalculator();
     }
 
     public void digitalClock() {
-
+//Digital clock for user comfortability when do any transaction .
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalTime currentTime = LocalTime.now();
             lblClock.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
@@ -210,17 +201,15 @@ balanceCalculator();
 
     public void setBtnExit(ActionEvent event) {
 
-
+//Exit method
         System.exit(0);
     }
 
 
     public void towardChangePasswordView(ActionEvent event) throws IOException {
         Parent changePassword = FXMLLoader.load(getClass().getResource("../views/ChangePasswordView.fxml"));
-       // Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
-
         Scene changePasswordView = new Scene(changePassword);
-//Get stage Information
+        //Get stage Information
         Stage window = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         window.setScene(changePasswordView);
         window.show();
@@ -229,6 +218,7 @@ balanceCalculator();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Update table with lasts user transaction and get userID when initialize the class .
         transactionColumn.setCellValueFactory(new PropertyValueFactory<>("transaction"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         tableView.setItems(list);
@@ -242,7 +232,5 @@ balanceCalculator();
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-
-
     }
 }

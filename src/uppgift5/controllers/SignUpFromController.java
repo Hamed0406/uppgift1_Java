@@ -47,23 +47,20 @@ public class SignUpFromController {
     private TextField txUserID;
     @FXML
     private PasswordField txPassword;
-
     String path =("src\\uppgift5\\Resources\\");
 
     public void setBtnTologin(ActionEvent event) throws IOException {
         Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
-
         Scene loginView = new Scene(loginParent);
-//Get stage Information
+    //Get stage Information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginView);
         window.show();
     }
 
     public void signUpUser(ActionEvent event) throws ParserConfigurationException, TransformerException, SAXException, IOException {
-        //TODO load list from XML
-        //get new user
 
+//Load all user in list and add new user .
         User user = new User(txFirstName.getText(), txLastName.getText(), txUserID.getText(), txPassword.getText(), "0");
         //TODO creat xml file for a user
         fileCreator(txUserID.getText());
@@ -87,13 +84,9 @@ public class SignUpFromController {
         String balanceT = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
-
         Document xmlDOc = documentBuilder.parse(xmlFilePath);
         //read array of user elements
         NodeList personList = xmlDOc.getElementsByTagName("user");
-
-
         for (int i = 0; i < personList.getLength(); i++) {
             org.w3c.dom.Node p = personList.item(i);
             if (p.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
@@ -105,8 +98,6 @@ public class SignUpFromController {
                 userIDT = user.getElementsByTagName("userID").item(0).getTextContent();
                 paswordT = user.getElementsByTagName("password").item(0).getTextContent();
                 balanceT = user.getElementsByTagName("balance").item(0).getTextContent();
-
-
                 User tempU = new User(firstNameT, lastNameT, userIDT, paswordT, balanceT);
                 list.add(tempU);
 
@@ -117,13 +108,12 @@ public class SignUpFromController {
     }
 
     public void fileCreator(String userNameID) throws IOException {
-
-
+        //Creat new xmlfile for UserID .
         if (!checkFile(userNameID))
             try {
                 File file = new File(path + userNameID + ".xml");
                 if (file.createNewFile()) {
-                    System.out.println(userNameID + "had been created");
+                    System.out.println(userNameID + " had been created,Thank you for choosing my ATM.");
                     BankAccountController bankAccountController=new BankAccountController();
                     bankAccountController.openAccount(userNameID);
                 }

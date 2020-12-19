@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
+import org.xml.sax.SAXException;
 import uppgift5.models.AuthenticationModel;
 import uppgift5.models.User;
 
@@ -17,6 +18,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.*;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,31 +68,21 @@ public class XmlController {
 
         Element newUser = xmlDoc.createElement("user");
         newUser.setAttribute("ID", String.valueOf(id));
-
         Text firstNameText = xmlDoc.createTextNode(firstName);
         Element firstNameElement = xmlDoc.createElement("firstName");
         firstNameElement.appendChild(firstNameText);
-
         Text lastNameText = xmlDoc.createTextNode(lastName);
         Element lastNameElement = xmlDoc.createElement("lastName");
         lastNameElement.appendChild(lastNameText);
-
-
         Text userIDText = xmlDoc.createTextNode(userID);
         Element userIDElement = xmlDoc.createElement("userID");
         userIDElement.appendChild(userIDText);
-
-
         Text passwordText = xmlDoc.createTextNode(password);
         Element passwordElement = xmlDoc.createElement("password");
         passwordElement.appendChild(passwordText);
-
-
         Text balanceText = xmlDoc.createTextNode(balance);
         Element balanceElement = xmlDoc.createElement("balance");
         balanceElement.appendChild(balanceText);
-
-
         newUser.appendChild(firstNameElement);
         newUser.appendChild(lastNameElement);
         newUser.appendChild(userIDElement);
@@ -100,24 +93,18 @@ public class XmlController {
 
     private static boolean checkIfNodeExists(Document document, String xpathExpression) throws Exception {
         boolean matches = false;
-
         // Create XPathFactory object
         XPathFactory xpathFactory = XPathFactory.newInstance();
-
         // Create XPath object
         XPath xpath = xpathFactory.newXPath();
-
         try {
             // Create XPathExpression object
             XPathExpression expr = xpath.compile(xpathExpression);
-
             // Evaluate expression result on XML document
             NodeList nodes = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
-
             if (nodes != null && nodes.getLength() > 0) {
                 matches = true;
             }
-
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }
@@ -141,13 +128,9 @@ public class XmlController {
 
         if (checkIfNodeExists(doc, "//user[userID=contains(.,'" + authenticationModel.getUserID() + "')]/userID/text()")) {
             XPathExpression exprUserID = xpath.compile("//user[userID=contains(.,'" + authenticationModel.getUserID() + "')]/userID/text()");
-
             Object resultUserID = exprUserID.evaluate(doc, XPathConstants.NODESET);
-
-
             NodeList nodesUserID = (NodeList) resultUserID;
             for (int i = 0; i < nodesUserID.getLength(); i++) {
-                System.out.println(nodesUserID.item(i).getNodeValue());
                 matchedUser = nodesUserID.item(i).getNodeValue();
             }
         } else
@@ -159,7 +142,6 @@ public class XmlController {
 
             NodeList nodesPassword = (NodeList) resultPassword;
             for (int i = 0; i < nodesPassword.getLength(); i++) {
-                System.out.println(nodesPassword.item(i).getNodeValue());
                 matchPassword = nodesPassword.item(i).getNodeValue();
 
             }
@@ -174,6 +156,56 @@ public class XmlController {
 
 
         return validate;
+
+    }
+
+    public void updatePasswordInXML(String data, String newPassword) throws ParserConfigurationException, IOException, SAXException, TransformerException, XPathExpressionException {
+//Update password in XMLUserDatabase.xml file.
+        List<User> list = new ArrayList<>();
+        String firstNameT = null;
+        String lastNameT = null;
+        String userIDT = null;
+        String paswordT = null;
+        String balanceT = null;
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+
+
+        Document xmlDOc = documentBuilder.parse(xmlFilePath);
+        //read array of user elements
+        NodeList personList = xmlDOc.getElementsByTagName("user");
+
+
+        for (int i = 0; i < personList.getLength(); i++) {
+            org.w3c.dom.Node p = personList.item(i);
+            if (p.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
+                Element user = (Element) p;
+                String ID = user.getAttribute("ID");
+                NodeList nameList = user.getChildNodes();
+                firstNameT = user.getElementsByTagName("firstName").item(0).getTextContent();
+                lastNameT = user.getElementsByTagName("lastName").item(0).getTextContent();
+                userIDT = user.getElementsByTagName("userID").item(0).getTextContent();
+                paswordT = user.getElementsByTagName("password").item(0).getTextContent();
+                balanceT = user.getElementsByTagName("balance").item(0).getTextContent();
+
+
+                User tempU = new User(firstNameT, lastNameT, userIDT, paswordT, balanceT);
+                list.add(tempU);
+
+            }
+
+
+        }
+        //Search User name in list and modify password
+        for (int i = 0; i < list.size(); i++) {
+            String tempUserID = list.get(i).getUserID();
+            String tempPass = list.get(i).getPassword();
+            if (tempUserID.equals(data)) {
+                User tempU = new User(list.get(i).getFirstName(), list.get(i).getLastName(), list.get(i).getUserID(), newPassword, "0");
+                list.set(i, tempU);
+            }
+        }
+        writeUserToXMl(list);
 
     }
 }
