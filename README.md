@@ -1,7 +1,7 @@
-# uppgift1_Hamed_Adeli
+# uppgift1
  
 First assignment has been done . I deleted unrelated files . I did initial commit for second assignment .
-# uppgift2_Hamed_Adeli
+# uppgift2_
 
 ## Definiera Klasser – Hund & Katt
 
@@ -35,7 +35,7 @@ Definiera en klass Matte med en konstruktor som tar Mattes namn, samt en Katt. (
 [Link to Main Class](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/src/uppgift2/uppgift2_4/TestMainUppgift2_4.java)
 
 
-# uppgift3_Hamed_Adeli
+# uppgift3_
 ## Stopwatch with JavaFX
 
 [Link to UML](https://github.com/Hamed0406/uppgift1_Hamed_Adeli/blob/master/UmlDiagrams/uppgift3/Package%20uppgift3.png)
